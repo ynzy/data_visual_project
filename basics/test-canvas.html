@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="canvas" width="800" height="800"></canvas>
+  <script>
+    // 方形
+    const canvas = document.getElementById('canvas')
+    const cvsCtx = canvas.getContext('2d') //获取canvas对象
+    cvsCtx.fillStyle = 'red'; // 修改填充色为红色
+    cvsCtx.fillRect(0, 0, 50, 50); //绘制矩形
+    
+    // 线
+    cvsCtx.beginPath();
+    cvsCtx.lineWidth = 2; // 线条宽度
+    cvsCtx.strokeStyle = 'blue'; // 线条填充色
+    cvsCtx.moveTo(100, 100);  // 起点坐标
+    cvsCtx.lineTo(250,75); // 中间坐标
+    cvsCtx.lineTo(300,100); // 终点坐标
+    cvsCtx.stroke(); //绘制线段
+    
+    // 圆
+    cvsCtx.beginPath();
+    cvsCtx.lineWidth = 2;
+    cvsCtx.strokeStyle = 'green';
+    cvsCtx.fillStyle = 'red';
+    cvsCtx.arc(200, 200, 50, 0, 2*Math.PI, false);
+    cvsCtx.stroke();
+    cvsCtx.fill();
+    
+    // 点
+    cvsCtx.beginPath();
+    cvsCtx.lineWidth = 1; // 线条宽度
+    cvsCtx.strokeStyle = 'red'; // 线条填充色
+    cvsCtx.moveTo(300, 300);  // 起点坐标
+    cvsCtx.lineTo(301,301); // 中间坐标
+    cvsCtx.stroke(); //绘制线段          
+  </script>
+</body>
+</html>
