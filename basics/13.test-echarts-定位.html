@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<script src="https://cdn.jsdelivr.net/npm/echarts@4.7.0/dist/echarts.min.js"></script>
+	<script src="./them/westeros.js"></script>
+	<style>
+		#chart {
+			width: 800px;
+			height: 600px;
+		}
+	</style>
+	<body>
+		<div>top: <input type="text" id="top" /> left: <input type="text" id="left" /> right: <input type="text" id="right" /> bottom: <input type="text" id="bottom" /></div>
+		<div style="margin-top: 50px" id="chart"></div>
+		<script>
+			let _left = '10%'
+			let _top = 100
+			let _bottom = 100
+			let _right = '10%'
+			const topInput = document.getElementById('top')
+			const leftInput = document.getElementById('left')
+			const bottomInput = document.getElementById('bottom')
+			const rightInput = document.getElementById('right')
+			const chartDom = document.getElementById('chart')
+			const chart = echarts.init(chartDom, 'westeros', { renderer: 'svg' })
+
+			function addInputEvent(dom, key) {
+				dom.addEventListener('input', function (e) {
+					value = e.target.value
+					switch (key) {
+						case 'top':
+							_top = value
+							break
+						case 'left':
+							_left = value
+							break
+						case 'bottom':
+							_bottom = value
+							break
+						case 'right':
+							_right = value
+							break
+					}
+					render()
+				})
+			}
+			function render() {
+				const option = {
+					dataset: {
+						source: [
+							['一季度', 79, 100, '分类1', 50],
+							['二季度', 81, 112, '分类2', 60],
+							['三季度', 88, 96, '分类3', 55],
+							['四季度', 72, 123, '分类4', 70]
+						]
+					},
+					title: {
+						text: 'ECharts 图表定位案例',
+						subtext: '副标题，可视化'
+					},
+					xAxis: {
+						data: ['一季度', '二季度', '三季度', '四季度']
+					},
+					yAxis: {},
+					legend: {
+						data: [
+							{
+								name: '分类',
+								icon: 'circle',
+								textStyle: {
+									color: 'red'
+								}
+							},
+							'折线图',
+							'柱状图'
+						],
+						left: 200
+					},
+					toolbox: {
+						feature: {
+							saveAsImage: {},
+							dataZoom: {
+								yAxisIndex: false
+							},
+							restore: {}
+						}
+					},
+					dataZoom: [
+						{
+							show: true,
+							start: 0,
+							end: 100
+						}
+					],
+					series: [
+						{
+							name: '分类',
+							type: 'pie',
+							center: ['65%', 60],
+							radius: 35,
+							encode: { itemName: 3, value: 4 }
+						},
+						{
+							name: '折线图',
+							type: 'line',
+							encode: { x: 0, y: 2 }
+						},
+						{
+							name: '柱状图',
+							type: 'bar',
+							encode: { x: 0, y: 1 }
+						}
+					]
+				}
+				chart.setOption(option)
+			}
+			window.onload = function () {
+				topInput.value = _top
+				leftInput.value = _left
+				bottomInput.value = _bottom
+				rightInput.value = _right
+				addInputEvent(topInput, 'top')
+				addInputEvent(leftInput, 'left')
+				addInputEvent(bottomInput, 'bottom')
+				addInputEvent(rightInput, 'right')
+				render()
+			}
+		</script>
+	</body>
+</html>
