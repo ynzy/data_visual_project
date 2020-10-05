@@ -2,7 +2,12 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import './assets/css/index.scss'
+import './plugins/element.js'
+import ECharts from 'echarts'
+
 Vue.config.productionTip = false
+
+Vue.prototype.$echarts = ECharts
 
 new Vue({
 	router,
