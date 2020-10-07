@@ -1,7 +1,7 @@
 <!-- 销售总额 -->
 <template>
 <div>
-  <CommonCard title="累计销售额" value="54,032,530">
+  <CommonCard title="累计销售额" value="¥ 54,032,530">
     <template>
       <div class="compare-wrapper">
         <div class="compare">

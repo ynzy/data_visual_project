@@ -6,8 +6,8 @@
       <div id="total-order-chart" :style="{ width: '100%', height: '100%' }"></div>
     </template>
     <template v-slot:footer>
-      <span>昨日订单量</span>
-      <span class="emphasis">¥ 2,000,000</span>
+      <span>昨日订单量 </span>
+      <span class="emphasis">2,000,000</span>
     </template>
   </CommonCard>
 </div>
