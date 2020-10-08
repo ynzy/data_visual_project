@@ -93,6 +93,12 @@ export default {
         }]
       },
       chartOptions:{
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: { // 鼠标移入效果
+            type: 'shadow'
+          }
+        },
         title: {
           text: '年度销售额',
           textStyle:{
@@ -135,6 +141,7 @@ export default {
           }
         },
         series:[{
+          name: '销售额',
           type: 'bar',
           barWidth: '35%',
           data: [410, 82, 200, 334, 390, 330, 220, 150, 82, 200, 134, 290, 330, 150]
