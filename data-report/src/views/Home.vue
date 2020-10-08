@@ -8,6 +8,7 @@
 </template>
 
 <script>
+
 import TopView from '../components/TopView'
 import SaleView from '../components/SaleView'
 import MapView from '../components/MapView'

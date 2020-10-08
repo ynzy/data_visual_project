@@ -4,12 +4,15 @@
 </template>
 
 <script>
+
 export default {
   data() {
     return {}
   },
   methods: {},
-  mounted() {},
+  mounted() {
+
+  },
   components: {}
 }
 </script>

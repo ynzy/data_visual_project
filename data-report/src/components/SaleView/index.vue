@@ -1,19 +1,37 @@
 <!--  -->
 <template>
-<div></div>
+  <v-chart
+    :options="chartOptions"
+  />
 </template>
 
 <script>
+
 export default {
   data() {
-    return {}
+    return {
+      chartOptions: {
+        xAxis: {
+          type: "category"
+        },
+        yAxis: {},
+        series: [{
+          type: "line",
+          data: [100,200,300]
+        }]
+      }
+    }
   },
   methods: {},
-  mounted() {},
+  mounted() {
+  },
   components: {}
 }
 </script>
 
 <style lang="scss" scoped>
-/* @import url(); 引入css类 */
+.echarts {
+  width: 100%;
+  height: 100%;
+}
 </style>
