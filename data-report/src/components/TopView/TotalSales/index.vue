@@ -9,7 +9,7 @@
           <span class="emphasis">80.11% %</span>
           <div class="increase"></div>
         </div>
-        <div class="compare">
+        <div class="compare">a
           <span>月同比</span>
           <span class="emphasis">132.90%</span>
           <div class="decrease"></div>

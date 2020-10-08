@@ -29,7 +29,7 @@ export default {
     chart.setOption({
       tooltip: {
         trigger: 'axis',
-        axisPointer: {
+        axisPointer: { // 鼠标移入效果
           type: 'line'
         }
       },
