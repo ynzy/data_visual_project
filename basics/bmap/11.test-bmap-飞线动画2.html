@@ -50,7 +50,7 @@
       var cityCenter = mapv.utilCityCenter.getCenterByCityName('北京')
       var map = initMap({
         center: [cityCenter.lng, cityCenter.lat],
-        tilt: 50,
+        tilt: 0,
         zoom: 5,
         style: purpleStyle
       })
@@ -96,13 +96,13 @@
         var coordinates = []
         for (let j = 0; j < line.length; j++) {
           coordinates.push([line[j].x, line[j].y])
-          data.push({
+        }
+        data.push({
             geometry: {
               type: 'LineString',
               coordinates
-            }
+            },
           })
-        }
       }
       console.log(data);
       return data
@@ -113,8 +113,9 @@
       // 1. 初始化图层
       var view = new mapvgl.View({ map })
       // 2. 初始化 LineLayer 
-      var lineLayer = new mapvgl.LineLayer({
-        color: 'rgba(55,50,250,0.3)',
+      var lineLayer = new mapvgl.SimpleLineLayer({
+        color: 'rgba(55, 50, 250, 0.3)',
+        blend: 'lighter' 
       })
       // 3. 将 LineLayer 添加到图层中
       view.addLayer(lineLayer)
@@ -122,8 +123,8 @@
 
       // 点的动画
       var linePointLayer = new mapvgl.LinePointLayer({
-        size: 8, // 点的大小
-        speed: 10, // 点运动的速度
+        size: 5, // 点的大小
+        speed: 12, // 点运动的速度
         color: 'rgba(255, 255, 0, 0.6)', // 点的颜色
         animationType: mapvgl.LinePointLayer.ANIMATION_TYPE_SMOOTH, // 点的动画类型
         shapeType: mapvgl.LinePointLayer.SHAPE_TYPE_CIRCLE, // 点的形状
