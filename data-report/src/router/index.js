@@ -9,7 +9,12 @@ const routes = [
 		path: '/',
 		name: 'Home',
 		component: Home
-	}
+	},
+	{
+		path: '/bmap',
+		name: 'BMap',
+		component: () => import('@/views/BMap')
+	},
 ]
 
 const router = new VueRouter({
