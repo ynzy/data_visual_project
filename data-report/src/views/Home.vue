@@ -12,6 +12,8 @@ import TopView from '../components/TopView'
 import SaleView from '../components/SaleView'
 import MapView from '../components/MapView'
 import BottomView from '../components/BottomView'
+import { wordcloud, mapScatter, screenData } from '../api/index'
+
 export default {
   name: 'Home',
   components: {
@@ -19,6 +21,24 @@ export default {
     SaleView,
     MapView,
     BottomView
+  },
+  data() {
+    return {
+      reportData: null,
+      wordCloud: null,
+      mapData: null
+    }
+  },
+  mounted() {
+    wordcloud().then(data => {
+      this.wordCloud = data
+    })
+    mapScatter().then(data => {
+      this.mapData = data
+    })
+    screenData().then(data => {
+      this.reportData = data
+    })
   }
 }
 </script>
