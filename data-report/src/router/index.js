@@ -15,6 +15,21 @@ const routes = [
 		name: 'BMap',
 		component: () => import('@/views/BMap')
 	},
+	{
+		path: '/bmap2',
+		name: 'BMap2',
+		component: () => import('@/views/BMap2')
+	},
+	{
+		path: '/Liquidfill',
+		name: 'Liquidfill',
+		component: () => import('@/views/Liquidfill')
+	},
+	{
+		path: '/WordCloud',
+		name: 'WordCloud',
+		component: () => import('@/views/WordCloud')
+	},
 ]
 
 const router = new VueRouter({
