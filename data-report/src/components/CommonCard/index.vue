@@ -1,23 +1,23 @@
 <!-- 公共卡片 -->
 <template>
-<div class="common-card">
-  <div class="title">{{ title }}</div>
-  <div class="value">{{ value }}</div>
-  <div class="chart">
-    <slot />
+  <div class="common-card">
+    <div class="title">{{ title }}</div>
+    <div class="value">{{ value }}</div>
+    <div class="chart">
+      <slot />
+    </div>
+    <div class="line"></div>
+    <div class="total">
+      <slot name="footer"></slot>
+    </div>
   </div>
-  <div class="line"></div>
-  <div class="total">
-    <slot name="footer"></slot>
-  </div>
-</div>
 </template>
 
 <script>
 export default {
   props: {
     title: String,
-    value: String
+    value: [String, Number]
   },
   data() {
     return {}

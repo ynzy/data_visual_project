@@ -5,7 +5,6 @@
 
 <script>
 function getColor(value) {
-  console.log(value)
   return value > 0 && value <= 0.5
     ? 'rgba(97,216,0,.7)'
     : value > 0.5 && value <= 0.8

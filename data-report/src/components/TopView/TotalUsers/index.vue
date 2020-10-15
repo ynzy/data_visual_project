@@ -1,28 +1,30 @@
 <!-- 累计用户数 -->
 <template>
-<div>
-  <CommonCard title="累计用户数" value="1,725,637">
-    <template>
-      <v-chart :options="getOptions()"/>
-    </template>
-    <template v-slot:footer>
-      <div class="total-users-footer">
-        <span>日同比</span>
-        <span class="emphasis">72.55%</span>
-        <div class="increase"></div>
-        <span class="dod-change">月同比</span>
-        <span class="emphasis">115.69%</span>
-        <div class="decrease"></div>
-      </div>
-    </template>
-  </CommonCard>
-</div>
+  <div>
+    <CommonCard title="累计用户数" :value="userToday">
+      <template>
+        <v-chart :options="getOptions()" />
+      </template>
+      <template v-slot:footer>
+        <div class="total-users-footer">
+          <span>日同比</span>
+          <span class="emphasis">{{ userGrowthLastDay }}</span>
+          <div class="increase"></div>
+          <span class="dod-change">月同比</span>
+          <span class="emphasis">{{ userGrowthLastMonth }}</span>
+          <div class="decrease"></div>
+        </div>
+      </template>
+    </CommonCard>
+  </div>
 </template>
 
 <script>
 import commonCardMixin from '../../../mixins/commonCardMixin'
+import commonDataMixin from '../../../mixins/commonDataMixin'
+
 export default {
-  mixins: [commonCardMixin],
+  mixins: [commonCardMixin, commonDataMixin],
   data() {
     return {}
   },
@@ -37,19 +39,22 @@ export default {
           type: 'category',
           show: false
         },
-        series: [{
-          type: 'bar',
-          stack: '总量', // 把相同系列数据或者图表合并成一个图表
-          data: [150],
-          barWidth: 10,
-          itemStyle: {
-            color: '#45c946'
-          }
-        },
+        series: [
           {
+            name: '上月平台用户数',
+            type: 'bar',
+            stack: '总量', // 把相同系列数据或者图表合并成一个图表
+            data: [this.userLastMonth],
+            barWidth: 10,
+            itemStyle: {
+              color: '#45c946'
+            }
+          },
+          {
+            name: '今日平台交互数',
             type: 'bar',
             stack: '总量',
-            data: [250],
+            data: [this.userTodayNumber],
             barWidth: 10,
             itemStyle: {
               color: '#eee'
@@ -59,28 +64,28 @@ export default {
             // 自定义绘图
             type: 'custom',
             stack: '总量',
-            data: [150],
+            data: [this.userLastMonth],
             renderItem: (params, api) => {
               const value = api.value(0)
               const endPoint = api.coord([value, 0]) //获取数据坐标点
-              console.log(endPoint)
               return {
                 type: 'group', // 分组管理图形
                 position: endPoint,
-                children: [{
-                  type: 'path',
-                  shape: {
-                    d: 'M1024 255.996 511.971 767.909 0 255.996 1024 255.996z', // svg里path里字符串最长的d
-                    x: -5,
-                    y: -20,
-                    width: 10,
-                    height: 10,
-                    layout: 'cover' // 定义缩放比例，相当于背景图覆盖
+                children: [
+                  {
+                    type: 'path',
+                    shape: {
+                      d: 'M1024 255.996 511.971 767.909 0 255.996 1024 255.996z', // svg里path里字符串最长的d
+                      x: -5,
+                      y: -20,
+                      width: 10,
+                      height: 10,
+                      layout: 'cover' // 定义缩放比例，相当于背景图覆盖
+                    },
+                    style: {
+                      fill: '#45c946'
+                    }
                   },
-                  style: {
-                    fill: '#45c946'
-                  }
-                },
                   {
                     type: 'path',
                     shape: {
@@ -109,8 +114,7 @@ export default {
       }
     }
   },
-  mounted() {
-  },
+  mounted() {},
   components: {}
 }
 </script>

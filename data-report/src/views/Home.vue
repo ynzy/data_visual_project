@@ -8,10 +8,10 @@
 </template>
 
 <script>
-import TopView from '../components/TopView'
-import SaleView from '../components/SaleView'
-import MapView from '../components/MapView'
-import BottomView from '../components/BottomView'
+import TopView from '../components/TopView/index.vue'
+import SaleView from '../components/SaleView/index.vue'
+import MapView from '../components/MapView/index.vue'
+import BottomView from '../components/BottomView/index.vue'
 import { wordcloud, mapScatter, screenData } from '../api/index'
 
 export default {
@@ -27,6 +27,24 @@ export default {
       reportData: null,
       wordCloud: null,
       mapData: null
+    }
+  },
+  provide() {
+    return {
+      getReportData: this.getReportData,
+      getWordCloud: this.getWordCloud,
+      getMapData: this.getMapData
+    }
+  },
+  methods: {
+    getReportData() {
+      return this.reportData
+    },
+    getWordCloud() {
+      return this.wordCloud
+    },
+    getMapData() {
+      return this.mapData
     }
   },
   mounted() {

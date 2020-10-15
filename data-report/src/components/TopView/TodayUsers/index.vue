@@ -1,63 +1,53 @@
 <!-- 今日交易用户数 -->
 <template>
-<div>
-  <CommonCard title="今日交易用户数" value="713,193">
-    <template>
-      <v-chart :options="getOptions()"/>
-    </template>
-    <template v-slot:footer>
-      <span>退货率 </span>
-      <span class="emphasis">5.70%</span>
-    </template>
-  </CommonCard>
-</div>
+  <div>
+    <CommonCard title="今日交易用户数" :value="orderUser">
+      <template>
+        <v-chart :options="getOptions()" />
+      </template>
+      <template v-slot:footer>
+        <span>退货率 </span>
+        <span class="emphasis">{{ returnRate }}</span>
+      </template>
+    </CommonCard>
+  </div>
 </template>
 
 <script>
 import commonCardMixin from '../../../mixins/commonCardMixin'
+import commonDataMixin from '../../../mixins/commonDataMixin'
+
 export default {
-  mixins: [commonCardMixin],
+  mixins: [commonCardMixin, commonDataMixin],
   data() {
     return {}
   },
   methods: {
-    getOptions(){
-      return{
+    getOptions() {
+      return {
         tooltip: {
           trigger: 'axis',
-          axisPointer: { // 鼠标移入效果
+          axisPointer: {
+            // 鼠标移入效果
             type: 'line'
           }
         },
         xAxis: {
           type: 'category', // 分类
-          data: [
-            '00:00',
-            '01:00',
-            '02:00',
-            '03:00',
-            '04:00',
-            '05:00',
-            '06:00',
-            '07:00',
-            '08:00',
-            '09:00',
-            '10:00',
-            '11:00',
-            '12:00',
-            '13:00'
-          ],
+          data: this.orderUserTrendAxis,
           show: false
         },
         yAxis: {
           show: false
         },
-        series: [{
-          name: '直接访问',
-          type: 'bar',
-          data: [410, 82, 200, 334, 390, 330, 220, 150, 82, 200, 134, 290, 330, 150],
-          barWidth: '60%'
-        }],
+        series: [
+          {
+            name: '用户实时交易量',
+            type: 'bar',
+            data: this.orderUserTrend,
+            barWidth: '60%'
+          }
+        ],
         color: ['#3398DB'],
         grid: {
           top: 0,
@@ -66,12 +56,9 @@ export default {
           bottom: 0
         }
       }
-
     }
   },
-  mounted() {
-
-  },
+  mounted() {},
   components: {}
 }
 </script>
