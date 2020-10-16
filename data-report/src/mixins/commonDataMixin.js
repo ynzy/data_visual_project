@@ -100,8 +100,25 @@ export default {
       return wrapperNumber(this.reportData, 'userGrowthLastMonth')
     },
     // 销售面板
-
-    // wordCloud
+    orderFullYear() {
+      return wrapperArray(this.reportData, 'orderFullYear')
+    },
+    orderFullYearAxis() {
+      return wrapperArray(this.reportData, 'orderFullYearAxis')
+    },
+    orderRank() {
+      return wrapperArray(this.reportData, 'orderRank')
+    },
+    userFullYear() {
+      return wrapperArray(this.reportData, 'userFullYear')
+    },
+    userFullYearAxis() {
+      return wrapperArray(this.reportData, 'userFullYearAxis')
+    },
+    userRank() {
+      return wrapperArray(this.reportData, 'userRank')
+    },
+    // 词云图
     wordCloud() {
       return this.getWordCloud()
     },
