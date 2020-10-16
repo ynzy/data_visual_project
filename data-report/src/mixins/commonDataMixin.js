@@ -27,9 +27,10 @@ function wrapperOriginalNumber(o, k) {
   return o && o[k] ? o[k] : 0
 }
 /**
- * 处理对象
+ * 处理对象增强
  */
 function wrapperObject(o, k) {
+  // 'category.data1'
   if (o && k.indexOf('.') >= 0) {
     const keys = k.split('.')
     keys.forEach(key => {
