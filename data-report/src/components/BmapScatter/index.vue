@@ -3,7 +3,7 @@
   <ve-bmap
     :settings="chartSettings"
     :title="title"
-    :series="series"
+    :series="chartSeries"
     :tooltip="tooltip"
     :after-set-option-once="afterSet"
     height="100%"
@@ -14,12 +14,13 @@
 <script>
 import mapStyle from '../../../src/utils/mapStyle.json'
 import { scatterData, geoCoordMap } from '../../../src/utils/scatterData'
+import commonDataMixin from '../../mixins/commonDataMixin'
 
-const convertData = function(data) {
+const convertData = function(data, geo) {
   let res = []
   data.forEach(item => {
     const { name, value } = item
-    const coord = geoCoordMap[name]
+    const coord = geo[name]
     res.push({
       name,
       value: [...coord, value]
@@ -29,6 +30,7 @@ const convertData = function(data) {
 }
 
 export default {
+  mixins: [commonDataMixin],
   components: {},
   data() {
     return {
@@ -48,12 +50,18 @@ export default {
         }
       },
       tooltip: {},
-      series: [
+      chartSeries: []
+    }
+  },
+  watch: {
+    mapData() {
+      const { data, geo } = this.mapData
+      this.chartSeries = [
         {
           name: '销售额',
           type: 'scatter',
           coordinateSystem: 'bmap', // 坐标系统
-          data: convertData(scatterData),
+          data: convertData(scatterData, geo),
           encode: {
             value: 2 //定制value值
           },
@@ -79,13 +87,14 @@ export default {
           }
         },
         {
-          name: 'Top 2',
+          name: 'Top 10',
           type: 'effectScatter', //波纹散点
           coordinateSystem: 'bmap', // 坐标系统
           data: convertData(
             scatterData.sort(function(a, b) {
               return b.value - a.value
-            })
+            }),
+            geo
           ).slice(0, 10),
           encode: {
             value: 2 //定制value值

@@ -33,7 +33,11 @@
 import BmapScatter from '../BmapScatter/index.vue'
 import LiquidFill from '../LiquidFill/index.vue'
 import WordCloud from '../WordCloud/index.vue'
+import commonDataMixin from '../../mixins/commonDataMixin'
+
 export default {
+  mixins: [commonDataMixin],
+
   data() {
     return {}
   },
