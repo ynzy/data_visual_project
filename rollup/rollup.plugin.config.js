@@ -1,30 +1,40 @@
-import { comment } from './comment-helper-es'
 import resolve from 'rollup-plugin-node-resolve'
 import commonjs from 'rollup-plugin-commonjs'
-import babel from 'rollup-plugin-babel'
-import json from 'rollup-plugin-json'
-import { uglify } from 'rollup-plugin-uglify'
+import buble from 'rollup-plugin-buble'
+import replace from 'rollup-plugin-replace'
+import flow from 'rollup-plugin-flow-no-whitespace'
+import { terser } from 'rollup-plugin-terser'
+import alias from 'rollup-plugin-alias'
+import path from 'path'
 
+const pathResolve = p => path.resolve(__dirname, p)
 
 export default {
-  input: './src/plugin/main.js',
+  input: './src/vue/replace/index.js',
   output: [{
-    file: './dist/index-plugin-cjs.js',
-    format: 'cjs',
-    banner: comment('welcome to imooc.com', 'this is a rollup test project'),
-    footer: comment('powered by sam', 'copyright 2018')
-  }, {
     file: './dist/index-plugin-es.js',
-    format: 'es',
-    banner: comment('welcome to imooc.com', 'this is a rollup test project'),
-    footer: comment('powered by sam', 'copyright 2018')
+    format: 'es'
   }],
   plugins: [
-    resolve(),
+    replace({
+      __SAM__: true
+    }),
+    flow(),
+    buble(),
+    alias({
+      entries: {
+        '@': pathResolve('src')
+      }
+    }),
     commonjs(),
-    babel(),
-    json(),
-    uglify()
-  ],
-  external: ['sam-test-data']
+    resolve(),
+    terser({
+      output: {
+        ascii_only: true // 仅输出ascii字符
+      },
+      compress: {
+        pure_funcs: ['console.log'] // 去掉console.log函数
+      }
+    }),
+  ]
 }
