@@ -30,7 +30,8 @@ module.exports = {
     resolve(),
     vue(),
     babel({
-      exclude: 'node_modules/**'
+      exclude: 'node_modules/**',
+      runtimeHelpers: true,       // 使plugin-transform-runtime生效
     }),
     commonjs(),
     json(),
