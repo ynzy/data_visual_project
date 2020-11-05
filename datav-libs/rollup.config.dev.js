@@ -16,7 +16,10 @@ module.exports = {
   output: [{
     file: outputUmdPath,
     format: 'umd',
-    name: 'datav'
+    name: 'datav',
+    globals: {
+      vue: 'Vue'
+    }
   }, {
     file: outputEsPath,
     format: 'es',
