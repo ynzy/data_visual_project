@@ -1,2 +1,4 @@
-import json from "../package.json";
-export default json
+import Test from "./Test.vue";
+export default function (Vue) {
+  Vue.component(Test.name, Test)
+}
