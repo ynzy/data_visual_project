@@ -1,13 +1,6 @@
 {
-  "presets": [
-    "@babel/preset-env"
-  ],
+  "presets": ["@babel/preset-env"],
   "plugins": [
-    "@babel/plugin-transform-flow-strip-types",
-    // 解决多个地方使用相同代码导致打包重复的问题
-    "@babel/plugin-transform-runtime"
-  ],
-  "ignore": [
-    "node_modules/**"
+    "@babel/plugin-transform-flow-strip-types"
   ]
 }

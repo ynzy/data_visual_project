@@ -1,36 +1,19 @@
-import { ref, computed, pushScopeId, popScopeId, openBlock, createBlock, createVNode, toDisplayString, withScopeId } from 'vue';
+import { openBlock, createBlock, withScopeId } from 'vue';
 
 var script = {
-  name: 'TestComponent',
-  setup: function setup() {
-    var message = 'hello world';
-    var count = ref(1);
-    var doubleCount = computed(function () {
-      return count.value * 2;
-    });
-    return {
-      message: message,
-      doubleCount: doubleCount
-    };
-  }
+  name: 'Test',
+  data: function data() {
+    return {};
+  },
+  methods: {},
+  mounted: function mounted() {},
+  components: {}
 };
 
-var _withId = /*#__PURE__*/withScopeId("data-v-07bdddea");
-
-pushScopeId("data-v-07bdddea");
-
-var _hoisted_1 = {
-  "class": "test"
-};
-
-popScopeId();
+var _withId = /*#__PURE__*/withScopeId("data-v-2d356c94");
 
 var render = /*#__PURE__*/_withId(function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createBlock("div", _hoisted_1, [createVNode("div", null, toDisplayString($setup.message), 1
-  /* TEXT */
-  ), createVNode("div", null, "double:" + toDisplayString($setup.doubleCount), 1
-  /* TEXT */
-  )]);
+  return openBlock(), createBlock("div", null, "hello world 1");
 });
 
 function styleInject(css, ref) {
@@ -60,15 +43,61 @@ function styleInject(css, ref) {
   }
 }
 
-var css_248z = ".test[data-v-07bdddea] {\n  color: red;\n}";
+var css_248z = "@charset \"UTF-8\";\n/* @import url(); 引入css类 */";
 styleInject(css_248z);
 
 script.render = render;
-script.__scopeId = "data-v-07bdddea";
-script.__file = "src/Test.vue";
+script.__scopeId = "data-v-2d356c94";
+script.__file = "src/component/Test/Test.vue";
 
-function index (Vue) {
+script.install = function (Vue) {
   Vue.component(script.name, script);
-}
+};
+
+var script$1 = {
+  name: 'Test2',
+  data: function data() {
+    return {};
+  },
+  methods: {},
+  mounted: function mounted() {},
+  components: {}
+};
+
+var _withId$1 = /*#__PURE__*/withScopeId("data-v-451f65d4");
+
+var render$1 = /*#__PURE__*/_withId$1(function render(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(), createBlock("div", null, "hello world 2");
+});
+
+var css_248z$1 = "@charset \"UTF-8\";\n/* @import url(); 引入css类 */";
+styleInject(css_248z$1);
+
+script$1.render = render$1;
+script$1.__scopeId = "data-v-451f65d4";
+script$1.__file = "src/component/Test2/Test2.vue";
+
+script$1.install = function (Vue) {
+  Vue.component(script$1.name, script$1);
+};
+
+var components = [script, script$1]; // will install the plugin only once
+
+var install = function install(Vue) {
+  components.forEach(function (component) {
+    Vue.component(component.name, component);
+  });
+};
+
+if (typeof window !== 'undefined' && window.Vue) {
+  install(window.Vue);
+} // To allow use as module (npm/webpack/etc.) export component
+
+
+var index = {
+  install: install,
+  Test: script,
+  Test2: script$1
+};
 
 export default index;
