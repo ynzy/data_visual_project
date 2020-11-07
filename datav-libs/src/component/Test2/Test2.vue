@@ -7,12 +7,12 @@
 export default {
   name: 'Test2',
   data() {
-    return {};
+    return {}
   },
   methods: {},
   mounted() {},
   components: {},
-};
+}
 </script>
 
 <style lang="scss" scoped>

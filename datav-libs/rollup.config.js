@@ -6,8 +6,8 @@ const babel = require('rollup-plugin-babel')
 const { terser } = require('rollup-plugin-terser')
 const vue = require('rollup-plugin-vue')
 const postcss = require('rollup-plugin-postcss')
-
-const pathResolve = p => path.resolve(__dirname, p)
+const { eslint } = require('rollup-plugin-eslint')
+const pathResolve = (p) => path.resolve(__dirname, p)
 
 const outputOptions = require('./rollup-output-options')
 
@@ -19,10 +19,17 @@ const basePlugins = [
   json(),
   vue(),
   babel({
-    exclude: 'node_modules/**'
+    exclude: 'node_modules/**',
+    runtimeHelpers: true, // 使plugin-transform-runtime生效
   }),
   commonjs(),
-  postcss()
+  postcss(),
+  eslint({
+    throwOnError: false,
+    throwOnWarning: true,
+    include: ['src/**'],
+    exclude: ['node_modules/**'],
+  }),
 ]
 // 开发环境需要使用的插件
 const devPlugins = []
@@ -30,12 +37,12 @@ const devPlugins = []
 const prodPlugins = [
   terser({
     output: {
-      ascii_only: true // 仅输出ascii字符
+      ascii_only: true, // 仅输出ascii字符
     },
     compress: {
-      pure_funcs: ['console.log'] // 去掉console.log函数
-    }
-  })
+      pure_funcs: ['console.log'], // 去掉console.log函数
+    },
+  }),
 ]
 let plugins = [...basePlugins].concat(isProd ? prodPlugins : devPlugins)
 
@@ -43,7 +50,7 @@ let config = {
   input: pathResolve('./src/index.js'),
   output: outputOptions,
   //! 注意插件加载顺序
-  plugins: plugins
+  plugins: plugins,
 }
 
 module.exports = config
