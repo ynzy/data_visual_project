@@ -3,8 +3,10 @@
   <router-link to="/">Home</router-link> |
   <router-link to="/about">About</router-link>
 </div>
-<test />
-<test2 />
+<div class="icon_wrapper">
+  <test />
+  <test2 />
+</div>
 <router-view />
 </template>
 
@@ -34,5 +36,11 @@ export default {
       color: #42b983;
     }
   }
+}
+
+.icon_wrapper {
+  height: 20px;
+  width: 20px;
+  color: green;
 }
 </style>
