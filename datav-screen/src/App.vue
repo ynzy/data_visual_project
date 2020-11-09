@@ -1,13 +1,23 @@
 <template>
-<div id="nav">
-  <router-link to="/">Home</router-link> |
-  <router-link to="/about">About</router-link>
-</div>
-<div class="icon_wrapper">
+  <div id="nav">
+    <router-link to="/">Home</router-link> |
+    <router-link to="/about">About</router-link>
+  </div>
   <test />
-  <test2 />
-</div>
-<router-view />
+  <svg width="50" height="50" style="color:red">
+    <use href="#more"></use>
+  </svg>
+  <svg width="50" height="50" style="color:green">
+    <use href="#filledArrowRight"></use>
+  </svg>
+  <svg width="50" height="50" style="color:green">
+    <use href="#arrowRight"></use>
+  </svg>
+  <Icon name="more" class="common_icon" />
+  <!-- <div class="icon_wrapper">
+    <test2 />
+  </div> -->
+  <router-view />
 </template>
 
 <script>
@@ -41,6 +51,11 @@ export default {
 .icon_wrapper {
   height: 20px;
   width: 20px;
-  color: green;
+  color: red;
+}
+.common_icon {
+  width: 50px;
+  height: 50px;
+  color: red;
 }
 </style>
