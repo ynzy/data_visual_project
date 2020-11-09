@@ -3,8 +3,9 @@
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
   </div>
+  <!-- <router-view /> -->
   <test />
-  <svg width="50" height="50" style="color:red">
+  <!-- <svg width="50" height="50" style="color:red">
     <use href="#more"></use>
   </svg>
   <svg width="50" height="50" style="color:green">
@@ -16,11 +17,8 @@
   <Icon name="more" class="common_icon" />
   <Icon name="lianxiren" class="common_icon" />
   <Icon name="iconall" class="common_icon" />
-  <Icon name="iconpic" class="common_icon" />
-  <!-- <div class="icon_wrapper">
-    <test2 />
-  </div> -->
-  <router-view />
+  <Icon name="iconpic" class="common_icon" /> -->
+  <SvgAnimation />
 </template>
 
 <script>
