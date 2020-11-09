@@ -14,6 +14,9 @@
     <use href="#arrowRight"></use>
   </svg>
   <Icon name="more" class="common_icon" />
+  <Icon name="lianxiren" class="common_icon" />
+  <Icon name="iconall" class="common_icon" />
+  <Icon name="iconpic" class="common_icon" />
   <!-- <div class="icon_wrapper">
     <test2 />
   </div> -->
