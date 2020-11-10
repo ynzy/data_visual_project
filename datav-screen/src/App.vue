@@ -18,12 +18,24 @@
   <Icon name="lianxiren" class="common_icon" />
   <Icon name="iconall" class="common_icon" />
   <Icon name="iconpic" class="common_icon" /> -->
-  <SvgAnimation />
+  <!-- <SvgAnimation /> -->
+  <Loading width="100" height="100" outsideColor="red" insideColor="blue" :duration="2">
+    数据大屏加载中。。。。
+  </Loading>
 </template>
 
 <script>
+/**
+ * @param sdf sdfsdfd
+ */
 export default {
-  components: {}
+  components: {},
+  props: {
+    num: {
+      type: [Number],
+      default: {}
+    }
+  }
 }
 </script>
 
