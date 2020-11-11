@@ -1,18 +1,34 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <Container :style="style" :options="{ width: 3840, height: 2160 }">
+      <div class="test">123123</div>
+      <button @click="changeStyle" style="font-size: 200px">改变宽高比</button>
+    </Container>
   </div>
 </template>
-
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
-
+import { reactive, toRefs } from 'vue'
 export default {
-  name: "Home",
-  components: {
-    HelloWorld
+  name: 'Home',
+  setup() {
+    const state = reactive({ style: {} })
+    const changeStyle = () => {
+      state.style = {
+        ...state.style,
+        height: '20px'
+      }
+    }
+    return {
+      ...toRefs(state),
+      changeStyle
+    }
   }
-};
+}
 </script>
+<style lang="scss" scoped>
+.test {
+  font-size: 140px;
+  color: red;
+  transform: scale(1, 1);
+}
+</style>
