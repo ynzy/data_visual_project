@@ -22,7 +22,28 @@
   <!-- <Loading width="100" height="100" outsideColor="red" insideColor="blue" :duration="2">
     数据大屏加载中。。。。
   </Loading> -->
-  <FlyBox></FlyBox>
+  <div style="width:50%;height:200px;background:#000;color:#fff">
+    <FlyBox>
+      <div>333</div>
+      <div>333</div>
+      <div>333</div>
+      <div>333</div>
+      <div>333</div>
+      <div>333</div>
+      <div>333</div>
+    </FlyBox>
+  </div>
+  <div style="width:100%;height:200px;background:#000;color:#fff">
+    <FlyBox>
+      <div>333</div>
+      <div>333</div>
+      <div>333</div>
+      <div>333</div>
+      <div>333</div>
+      <div>333</div>
+      <div>333</div>
+    </FlyBox>
+  </div>
 </template>
 
 <script>
