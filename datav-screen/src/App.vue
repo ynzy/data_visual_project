@@ -17,4 +17,8 @@ body,
   padding: 0;
   margin: 0;
 }
+#app {
+  font-family: 'Microsoft Yahei', Arial, sans-serif;
+  overflow: hidden;
+}
 </style>

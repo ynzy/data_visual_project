@@ -6,10 +6,12 @@ import './assets/iconfont/symbo.js'
 import datav from 'ynzy_datav_libs'
 // import { Test, Test2 } from 'ynzy_datav_libs'
 // console.log(datav)
+// import ECharts from "vue-echarts";
+
 createApp(App)
+  .use(router)
   .use(store)
   .use(datav)
   // .use(Test)
-  // .use(Test2)
-  .use(router)
+  // .component('vue-echarts', ECharts)
   .mount('#app')

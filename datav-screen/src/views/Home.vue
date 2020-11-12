@@ -1,34 +1,39 @@
 <template>
   <div class="home">
-    <Container :style="style" :options="{ width: 3840, height: 2160 }">
+    <Loading v-if="loading">加载中...</Loading>
+    <Container :options="{ width: 3840, height: 2160 }" v-else>
       <div class="test">123123</div>
-      <button @click="changeStyle" style="font-size: 200px">改变宽高比</button>
     </Container>
   </div>
 </template>
 <script>
-import { reactive, toRefs } from 'vue'
+import { onMounted, reactive, ref, toRefs } from 'vue'
+import useScreenData from '@/hooks/useScreenData'
 export default {
   name: 'Home',
+  components: {},
   setup() {
-    const state = reactive({ style: {} })
-    const changeStyle = () => {
-      state.style = {
-        ...state.style,
-        height: '20px'
-      }
-    }
+    // const screenData = useScreenData()
+    const loading = ref(true)
+    onMounted(() => {
+      setTimeout(() => {
+        loading.value = false
+      }, 2500)
+    })
     return {
-      ...toRefs(state),
-      changeStyle
+      loading
+      // ...screenData
     }
   }
 }
 </script>
 <style lang="scss" scoped>
-.test {
-  font-size: 140px;
-  color: red;
-  transform: scale(1, 1);
+.home {
+  width: 100%;
+  height: 100%;
+  // background-color: rgb(50, 47, 48);
+  background: rgb(29, 29, 29);
+  color: #fff;
+  font-size: 48px;
 }
 </style>
