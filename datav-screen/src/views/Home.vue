@@ -10,7 +10,9 @@
       </div>
       <div class="center">
         <div class="left">
-          <div class="left1">1</div>
+          <div class="left1">
+            <TotalUser :today-user="111" :growth-last-day="100" :growth-last-month="100" ref="totalUser" />
+          </div>
           <div class="left2">2</div>
           <div class="left3">3</div>
           <div class="left4">4</div>
@@ -42,9 +44,10 @@ import { onMounted, reactive, ref, toRefs } from 'vue'
 import useScreenData from '@/hooks/useScreenData'
 import Separator from '@/components/Separator/index.vue'
 import TopHeader from '@/components/TopHeader2/index.vue'
+import TotalUser from '@/components/TotalUser/index.vue'
 export default {
   name: 'Home',
-  components: { Separator, TopHeader },
+  components: { Separator, TopHeader, TotalUser },
   setup() {
     // const screenData = useScreenData()
     const loading = ref(true)
@@ -98,8 +101,7 @@ export default {
       .left4,
       .left5,
       .left6 {
-        margin-bottom: 20px;
-        background: #000;
+        padding-bottom: 20px;
       }
       .left1 {
         height: 300px;
