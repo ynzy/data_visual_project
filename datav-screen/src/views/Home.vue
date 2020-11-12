@@ -2,7 +2,9 @@
   <div class="home">
     <Loading v-if="loading">加载中...</Loading>
     <Container :options="{ width: 3840, height: 2160 }" v-else>
-      <div class="header">标题</div>
+      <div class="header">
+        <TopHeader />
+      </div>
       <div class="separator-wrapper">
         <Separator />
       </div>
@@ -39,9 +41,10 @@
 import { onMounted, reactive, ref, toRefs } from 'vue'
 import useScreenData from '@/hooks/useScreenData'
 import Separator from '@/components/Separator/index.vue'
+import TopHeader from '@/components/TopHeader2/index.vue'
 export default {
   name: 'Home',
-  components: { Separator },
+  components: { Separator, TopHeader },
   setup() {
     // const screenData = useScreenData()
     const loading = ref(true)
