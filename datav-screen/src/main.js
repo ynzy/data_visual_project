@@ -4,7 +4,6 @@ import router from './router'
 import store from './store'
 import './assets/iconfont/symbo.js'
 import datav from 'ynzy_datav_libs'
-// import VueCountTo from './components/VueCountTo/vue-countTo'
 
 // import { Test, Test2 } from 'ynzy_datav_libs'
 // console.log(datav)
@@ -14,5 +13,5 @@ createApp(App)
   .use(store)
   .use(datav)
   // .use(Test)
-  // .component('CountTo', VueCountTo)
+  // .component('vue-echarts', ECharts)
   .mount('#app')

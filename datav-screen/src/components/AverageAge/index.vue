@@ -120,7 +120,7 @@ export default {
     onMounted(() => {
       if (!chart) {
         chart = Echarts.init(document.getElementById('average-age-chart'))
-        console.log(chart)
+        // console.log(chart)
       }
       chart.setOption(createOption())
     })
