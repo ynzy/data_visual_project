@@ -18,7 +18,7 @@
               ref="totalUser"
             />
           </div>
-          <div class="left2">2</div>
+          <div class="left2"><average-age :data="ageData" :avg-age="averageage || 0" ref="averageAge" /></div>
           <div class="left3">3</div>
           <div class="left4">4</div>
           <div class="left5">5</div>
@@ -50,9 +50,10 @@ import useScreenData from '@/hooks/useScreenData'
 import Separator from '@/components/Separator/index.vue'
 import TopHeader from '@/components/TopHeader2/index.vue'
 import TotalUser from '@/components/TotalUser/index.vue'
+import AverageAge from '@/components/AverageAge/index.vue'
 export default {
   name: 'Home',
-  components: { Separator, TopHeader, TotalUser },
+  components: { Separator, TopHeader, TotalUser, AverageAge },
   setup() {
     const context = getCurrentInstance().ctx
     const screenData = useScreenData(context, { once: false })

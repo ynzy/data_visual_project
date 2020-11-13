@@ -40,11 +40,14 @@ export default function useScreenData() {
   const growthLastDay = ref(10.25)
   const growthLastMounth = ref(15.15)
   const ageData = ref(ageMockData)
+  const averageage = ref(15.15)
+
   onMounted(() => {
     task = setInterval(() => {
       todayUser.value = todayUser.value + 10
       growthLastDay.value = growthLastDay.value + 1
       growthLastMounth.value = growthLastMounth.value + 1
+      averageage.value = averageage.value + 1
       const _ageData = [...ageData.value]
       _ageData.forEach(item => {
         item.startValue = item.value
@@ -52,6 +55,7 @@ export default function useScreenData() {
       })
       ageData.value = _ageData
     }, 3000)
+
   })
   onUnmounted(() => {
     task && clearInterval(task)
@@ -60,6 +64,7 @@ export default function useScreenData() {
     todayUser,
     growthLastDay,
     growthLastMounth,
-    ageData
+    ageData,
+    averageage
   }
 }
