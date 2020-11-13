@@ -11,7 +11,12 @@
       <div class="center">
         <div class="left">
           <div class="left1">
-            <TotalUser :today-user="111" :growth-last-day="100" :growth-last-month="100" ref="totalUser" />
+            <TotalUser
+              :today-user="todayUser"
+              :growth-last-day="growthLastDay"
+              :growth-last-month="growthLastMounth"
+              ref="totalUser"
+            />
           </div>
           <div class="left2">2</div>
           <div class="left3">3</div>
@@ -40,7 +45,7 @@
   </div>
 </template>
 <script>
-import { onMounted, reactive, ref, toRefs } from 'vue'
+import { onMounted, reactive, ref, toRefs, getCurrentInstance } from 'vue'
 import useScreenData from '@/hooks/useScreenData'
 import Separator from '@/components/Separator/index.vue'
 import TopHeader from '@/components/TopHeader2/index.vue'
@@ -49,7 +54,8 @@ export default {
   name: 'Home',
   components: { Separator, TopHeader, TotalUser },
   setup() {
-    // const screenData = useScreenData()
+    const context = getCurrentInstance().ctx
+    const screenData = useScreenData(context, { once: false })
     const loading = ref(true)
     onMounted(() => {
       setTimeout(() => {
@@ -57,8 +63,8 @@ export default {
       }, 0)
     })
     return {
-      loading
-      // ...screenData
+      loading,
+      ...screenData
     }
   }
 }

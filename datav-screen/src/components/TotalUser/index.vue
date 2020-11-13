@@ -28,7 +28,6 @@
 import { ref } from 'vue'
 export default {
   name: 'TotalUser',
-  components: {},
   props: {
     todayUser: Number,
     growthLastDay: {
