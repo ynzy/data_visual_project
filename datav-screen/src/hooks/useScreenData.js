@@ -1,4 +1,4 @@
-import { onMounted, onUnmounted, ref } from 'vue'
+import { onMounted, onUnmounted, reactive, ref } from 'vue'
 
 const color = ['rgb(116,166,49)', 'rgb(190,245,99)', 'rgb(202,252,137)', 'rgb(251,253,142)']
 
@@ -41,6 +41,7 @@ export default function useScreenData() {
   const growthLastMounth = ref(15.15)
   const ageData = ref(ageMockData)
   const averageage = ref(15.15)
+  const deviceData = ref(deviceMockData)
 
   onMounted(() => {
     task = setInterval(() => {
@@ -48,12 +49,22 @@ export default function useScreenData() {
       growthLastDay.value = growthLastDay.value + 1
       growthLastMounth.value = growthLastMounth.value + 1
       averageage.value = averageage.value + 1
+      // deviceData.totalDevices = deviceData.totalDevices + 10
+
+      // 浅拷贝
       const _ageData = [...ageData.value]
       _ageData.forEach(item => {
         item.startValue = item.value
         item.value = item.value + random(100)
       })
       ageData.value = _ageData
+
+      const _deviceData = { ...deviceData.value }
+      _deviceData.totalDevices += 10
+      _deviceData.devices.forEach(item => {
+        item.value += random(100)
+      })
+      deviceData.value = _deviceData
     }, 3000)
 
   })
@@ -65,6 +76,7 @@ export default function useScreenData() {
     growthLastDay,
     growthLastMounth,
     ageData,
-    averageage
+    averageage,
+    deviceData
   }
 }

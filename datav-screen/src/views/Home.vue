@@ -20,7 +20,7 @@
           </div>
           <div class="left2"><average-age :data="ageData" :avg-age="averageage || 0" ref="averageAge" /></div>
           <div class="left3">
-            <total-device />
+            <TotalDevice :data="deviceData" />
           </div>
           <div class="left4">4</div>
           <div class="left5">5</div>
