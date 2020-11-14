@@ -42,14 +42,13 @@ export default function useScreenData() {
   const ageData = ref(ageMockData)
   const averageage = ref(15.15)
   const deviceData = ref(deviceMockData)
-
+  const genderData = ref(genderMockData)
   onMounted(() => {
     task = setInterval(() => {
       todayUser.value = todayUser.value + 10
       growthLastDay.value = growthLastDay.value + 1
       growthLastMounth.value = growthLastMounth.value + 1
       averageage.value = averageage.value + 1
-      // deviceData.totalDevices = deviceData.totalDevices + 10
 
       // 浅拷贝
       const _ageData = [...ageData.value]
@@ -65,6 +64,12 @@ export default function useScreenData() {
         item.value += random(100)
       })
       deviceData.value = _deviceData
+
+      const _genderData = [...genderData.value]
+      _genderData.forEach(item => {
+        item.value += random(100)
+      })
+      genderData.value = _genderData
     }, 3000)
 
   })
@@ -77,6 +82,7 @@ export default function useScreenData() {
     growthLastMounth,
     ageData,
     averageage,
-    deviceData
+    deviceData,
+    genderData
   }
 }
