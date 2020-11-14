@@ -23,6 +23,22 @@ const genderMockData = [
   { "key": "female", "value": 1442548 }
 ]
 
+const riderMockData = {
+  "axisX": ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
+  "orderData": {
+    "legend1": "去年骑手月人均接单",
+    "legend2": "今年骑手月人均接单",
+    "data1": ["330", "420", "560", "450", "610", "890", "720", "610", "580", "750", "770", "600"],
+    "data2": ["430", "510", "660", "550", "710", "990", "620", "550", "760", "810", "930", "720"]
+  },
+  "rateData": {
+    "legend1": "去年月新增骑手",
+    "legend2": "今年月新增骑手",
+    "data1": ["129", "223", "202", "197", "300", "112", "333", "249", "178", "322", "401", "167"],
+    "data2": ["179", "263", "282", "297", "330", "344", "222", "299", "190", "455", "566", "233"]
+  }
+}
+
 let task = null
 
 function random(val) {
@@ -43,6 +59,7 @@ export default function useScreenData() {
   const averageage = ref(15.15)
   const deviceData = ref(deviceMockData)
   const genderData = ref(genderMockData)
+  const riderData = ref(riderMockData)
   onMounted(() => {
     task = setInterval(() => {
       todayUser.value = todayUser.value + 10
@@ -70,6 +87,18 @@ export default function useScreenData() {
         item.value += random(100)
       })
       genderData.value = _genderData
+
+      const _riderData = { ...riderData.value }
+      _riderData.orderData.data1 = _riderData.orderData.data1.map(item => {
+        item = item + random(100)
+        return item
+      })
+      _riderData.orderData.data2 = _riderData.orderData.data2.map(item => {
+        item = item + random(100)
+        return item
+      })
+      riderData.value = _riderData
+
     }, 3000)
 
   })
@@ -83,6 +112,6 @@ export default function useScreenData() {
     ageData,
     averageage,
     deviceData,
-    genderData
+    genderData, riderData
   }
 }

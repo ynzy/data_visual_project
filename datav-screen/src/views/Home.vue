@@ -25,7 +25,9 @@
           <div class="left4">
             <TotalGender :data="genderData" />
           </div>
-          <div class="left5">5</div>
+          <div class="left5">
+            <TotalRider :data="riderData" />
+          </div>
           <div class="left6">6</div>
         </div>
         <div class="right">
@@ -57,9 +59,18 @@ import TotalUser from '@/components/TotalUser/index.vue'
 import AverageAge from '@/components/AverageAge/index.vue'
 import TotalDevice from '@/components/TotalDevice/index.vue'
 import TotalGender from '@/components/TotalGender/index.vue'
+import TotalRider from '@/components/TotalRider/index.vue'
 export default {
   name: 'Home',
-  components: { Separator, TopHeader, TotalUser, AverageAge, TotalDevice, TotalGender },
+  components: {
+    Separator,
+    TopHeader,
+    TotalUser,
+    AverageAge,
+    TotalDevice,
+    TotalGender,
+    TotalRider
+  },
   setup() {
     const context = getCurrentInstance().ctx
     const screenData = useScreenData(context, { once: false })
