@@ -13,7 +13,9 @@
         </div>
       </div>
     </div>
-    <div id="average-age-chart" />
+    <div id="average-age-chart">
+      <VueEcharts :options="options" />
+    </div>
     <div class="average-data-wrapper">
       <div class="average-data" v-for="(item, index) in data" :key="index">
         <div class="average-data-value">
@@ -29,8 +31,7 @@
 </template>
 
 <script>
-import Echarts from 'echarts'
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 
 const color = ['rgb(116,166,49)', 'rgb(190,245,99)', 'rgb(202,252,137)', 'rgb(251,253,142)']
 
@@ -41,17 +42,27 @@ export default {
     avgAge: Number
   },
   setup(props) {
-    let chart
     const startAge = ref(0)
-
-    const createOption = () => {
-      const data = ['年龄分布']
+    const options = ref(null)
+    /* watch(
+      () => props.avgAge,
+      (nextValue, prevValue) => {
+        startAge.value = prevValue
+      }
+    ) */
+    const updateChart = () => {
+      const newData = ['年龄分布']
+      const colors = []
+      const source = ['指标']
       let max = 0
       props.data.forEach(item => {
-        data.push(item.value)
+        newData.push(+item.value)
         max += item.value
+        colors.push(item.color)
+        source.push(item.axis)
       })
-      const option = {
+      // console.log(newData, max, colors, source)
+      options.value = {
         tooltip: {
           trigger: 'axis',
           axisPointer: {
@@ -69,11 +80,12 @@ export default {
           top: 0
         },
         dataset: {
-          source: [['指标', '0-20', '20-30', '30-50', '>50'], data]
+          source: [['指标', '0-20', '20-30', '30-50', '>50'], newData]
         },
         xAxis: {
           type: 'value',
           splitLine: {
+            // 分割线
             show: false
           },
           max,
@@ -115,17 +127,19 @@ export default {
           }
         ]
       }
-      return option
     }
-    onMounted(() => {
-      if (!chart) {
-        chart = Echarts.init(document.getElementById('average-age-chart'))
-        // console.log(chart)
+    watch(
+      () => props.data,
+      () => {
+        updateChart()
       }
-      chart.setOption(createOption())
+    )
+    onMounted(() => {
+      updateChart()
     })
     return {
-      startAge
+      startAge,
+      options
     }
   }
 }
