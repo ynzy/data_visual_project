@@ -39,6 +39,19 @@ const riderMockData = {
   }
 }
 
+const hotCategoryMockData = {
+  "data1": {
+    "axisX": ["粉面粥店", "简餐便当", "汉堡披萨", "香锅冒菜", "小吃炸串", "地方菜系", "轻食简餐"],
+    "data1": [50, 29, 46, 88, 99, 69, 97],
+    "data2": [50, 71, 54, 12, 1, 31, 3]
+  },
+  "data2": {
+    "axisX": ["草莓", "甘蔗", "榴莲", "菠萝", "香蕉", "梨", "苹果"],
+    "data1": [85, 4, 3, 26, 63, 31, 19],
+    "data2": [15, 96, 97, 74, 37, 69, 81]
+  }
+}
+
 let task = null
 
 function random(val) {
@@ -60,6 +73,7 @@ export default function useScreenData() {
   const deviceData = ref(deviceMockData)
   const genderData = ref(genderMockData)
   const riderData = ref(riderMockData)
+  const hotCategoryData = ref(hotCategoryMockData)
   onMounted(() => {
     task = setInterval(() => {
       todayUser.value = todayUser.value + 10
@@ -99,6 +113,14 @@ export default function useScreenData() {
       })
       riderData.value = _riderData
 
+
+      const _hotCategoryData = { ...hotCategoryData.value }
+      _hotCategoryData.data1.data1 = _hotCategoryData.data1.data1.map(item => {
+        item = item + random(100)
+        return item
+      })
+      hotCategoryData.value = _hotCategoryData
+
     }, 3000)
 
   })
@@ -112,6 +134,7 @@ export default function useScreenData() {
     ageData,
     averageage,
     deviceData,
-    genderData, riderData
+    genderData, riderData,
+    hotCategoryData
   }
 }

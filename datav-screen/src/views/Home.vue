@@ -28,7 +28,9 @@
           <div class="left5">
             <TotalRider :data="riderData" />
           </div>
-          <div class="left6">6</div>
+          <div class="left6">
+            <HotCategory :data="hotCategoryData" />
+          </div>
         </div>
         <div class="right">
           <div class="right-top1">1</div>
@@ -60,6 +62,7 @@ import AverageAge from '@/components/AverageAge/index.vue'
 import TotalDevice from '@/components/TotalDevice/index.vue'
 import TotalGender from '@/components/TotalGender/index.vue'
 import TotalRider from '@/components/TotalRider/index.vue'
+import HotCategory from '@/components/HotCategory/index.vue'
 export default {
   name: 'Home',
   components: {
@@ -69,7 +72,8 @@ export default {
     AverageAge,
     TotalDevice,
     TotalGender,
-    TotalRider
+    TotalRider,
+    HotCategory
   },
   setup() {
     const context = getCurrentInstance().ctx
