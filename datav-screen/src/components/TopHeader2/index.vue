@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { clock as useClock } from '@/utils/clock'
+import { clock as useClock } from '@/hooks/useClock'
 
 export default {
   name: 'topHeader2',

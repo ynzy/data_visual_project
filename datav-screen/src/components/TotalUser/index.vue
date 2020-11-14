@@ -18,14 +18,14 @@
     </div>
     <div class="prcent">
       <div class="percent-inner-wrapper">
-        <div class="percent-inner" :style="{ width: `10%` }" />
+        <div class="percent-inner" :style="{ width: `${growthLastDay}%` }" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 export default {
   name: 'TotalUser',
   props: {
@@ -48,6 +48,24 @@ export default {
       startPercent.value = props.growthLastDay
       startPercent2.value = props.growthLastMonth
     }
+    watch(
+      () => props.todayUser,
+      (newValue, oldValue) => {
+        startVal.value = newValue
+      }
+    )
+    watch(
+      () => props.growthLastDay,
+      (newValue, oldValue) => {
+        startPercent.value = newValue
+      }
+    )
+    watch(
+      () => props.growthLastMonth,
+      (newValue, oldValue) => {
+        startPercent2.value = newValue
+      }
+    )
     return {
       startVal,
       startPercent,

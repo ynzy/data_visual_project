@@ -44,12 +44,12 @@ export default {
   setup(props) {
     const startAge = ref(0)
     const options = ref(null)
-    /* watch(
+    watch(
       () => props.avgAge,
-      (nextValue, prevValue) => {
-        startAge.value = prevValue
+      (newValue, oldValue) => {
+        startAge.value = newValue
       }
-    ) */
+    )
     const updateChart = () => {
       const newData = ['年龄分布']
       const colors = []
