@@ -137,8 +137,6 @@ export default function useScreenData() {
       })
       hotCategoryData.value = _hotCategoryData
 
-      // const _headerData = 
-
     }, 3000)
 
   })

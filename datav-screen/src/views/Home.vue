@@ -36,11 +36,18 @@
           <div class="right-top1">
             <CenterHeader :data="headerData" />
           </div>
-          <div class="right-top2">2</div>
+          <div class="right-top2">
+            <TransformCategory :data="['ALL', '北京', '深圳', '上海', '南京', '武汉', '杭州']" />
+          </div>
           <div class="right-bottom">
             <div class="right-left">
               <div class="right-left1">11</div>
-              <div class="right-left2">22</div>
+              <div class="right-left2">
+                <TransformCategory
+                  :data="['订单', '销售额', '用户数', '退单量']"
+                  :color="['rgb(178,209,126)', 'rgb(114,166,49)']"
+                />
+              </div>
               <div class="right-left3">33</div>
               <div class="right-left4">44</div>
             </div>
@@ -66,6 +73,7 @@ import TotalGender from '@/components/TotalGender/index.vue'
 import TotalRider from '@/components/TotalRider/index.vue'
 import HotCategory from '@/components/HotCategory/index.vue'
 import CenterHeader from '@/components/CenterHeader/index.vue'
+import TransformCategory from '@/components/TransformCategory/index.vue'
 export default {
   name: 'Home',
   components: {
@@ -77,7 +85,8 @@ export default {
     TotalGender,
     TotalRider,
     HotCategory,
-    CenterHeader
+    CenterHeader,
+    TransformCategory
   },
   setup() {
     const context = getCurrentInstance().ctx
