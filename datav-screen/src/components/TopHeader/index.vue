@@ -1,46 +1,100 @@
 <template>
   <div class="top-header">
-    <dv-decoration-8 class="header-left-decoration" />
-    <dv-decoration-5 class="header-center-decoration" />
-    <dv-decoration-8 class="header-right-decoration" reverse />
-    <div class="title">互联网产业全球布局看板</div>
+    <!-- <img class="logo" src="@/assets/image/datav_logo.png" /> -->
+    <div class="logo-wrapper">
+      <Logo stroke="red" :stroke-width="50" />
+    </div>
+    <div class="logo-text">
+      <div class="cn-text">外卖业务数据大盘</div>
+      <div class="en-text">Delivery Overview of Business Data</div>
+    </div>
+    <div class="right-text">
+      <img class="right-logo" src="@/assets/image/TB.png" />
+      <div class="date">{{ date }}</div>
+      <div class="time">{{ time }}</div>
+    </div>
   </div>
 </template>
 
 <script>
+import { clock as useClock } from '@/hooks/useClock'
+
 export default {
-  name: 'topHeader'
+  name: 'topHeader2',
+  setup() {
+    const { date, time } = useClock()
+
+    return {
+      date,
+      time
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
 .top-header {
-  position: relative;
+  display: flex;
+  align-items: center;
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: space-between;
-  flex-shrink: 0;
+  background: rgb(36, 31, 32);
+  padding: 0 64px;
+  box-sizing: border-box;
 
-  .header-center-decoration {
-    width: 40%;
+  /* .logo {
+    width: 395px;
+    height: 99px;
+  } */
+  .logo-wrapper {
+    width: 120px;
     height: 120px;
-    margin-top: 50px;
+  }
+  .logo-text {
+    flex: 1;
+    margin-left: 40px;
+
+    .cn-text {
+      color: rgb(255, 255, 255);
+      font-weight: bold;
+      font-size: 60px;
+      letter-spacing: 2px;
+    }
+
+    .en-text {
+      color: rgb(255, 255, 255);
+      font-size: 35px;
+      letter-spacing: 1px;
+    }
   }
 
-  .header-left-decoration,
-  .header-right-decoration {
-    width: 25%;
-    height: 130px;
-  }
+  .right-text {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 
-  .title {
-    position: absolute;
-    font-size: 64px;
-    font-weight: bold;
-    left: 50%;
-    top: 20px;
-    transform: translateX(-50%);
+    img {
+      width: 363px;
+      height: 150px;
+    }
+
+    .date {
+      width: 330px;
+      text-align: right;
+      font-size: 52px;
+      color: rgb(255, 255, 255);
+      font-family: DIN;
+      font-weight: 500;
+    }
+
+    .time {
+      width: 220px;
+      font-size: 52px;
+      color: rgb(197, 251, 121);
+      font-family: DIN;
+      font-weight: 500;
+      margin-left: 30px;
+    }
   }
 }
 </style>

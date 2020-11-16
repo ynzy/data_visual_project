@@ -56,7 +56,7 @@
 import { onMounted, reactive, ref, toRefs, getCurrentInstance } from 'vue'
 import useScreenData from '@/hooks/useScreenData'
 import Separator from '@/components/Separator/index.vue'
-import TopHeader from '@/components/TopHeader2/index.vue'
+import TopHeader from '@/components/TopHeader/index.vue'
 import TotalUser from '@/components/TotalUser/index.vue'
 import AverageAge from '@/components/AverageAge/index.vue'
 import TotalDevice from '@/components/TotalDevice/index.vue'
