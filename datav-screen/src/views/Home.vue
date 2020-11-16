@@ -33,7 +33,9 @@
           </div>
         </div>
         <div class="right">
-          <div class="right-top1">1</div>
+          <div class="right-top1">
+            <CenterHeader :data="headerData" />
+          </div>
           <div class="right-top2">2</div>
           <div class="right-bottom">
             <div class="right-left">
@@ -63,6 +65,7 @@ import TotalDevice from '@/components/TotalDevice/index.vue'
 import TotalGender from '@/components/TotalGender/index.vue'
 import TotalRider from '@/components/TotalRider/index.vue'
 import HotCategory from '@/components/HotCategory/index.vue'
+import CenterHeader from '@/components/CenterHeader/index.vue'
 export default {
   name: 'Home',
   components: {
@@ -73,7 +76,8 @@ export default {
     TotalDevice,
     TotalGender,
     TotalRider,
-    HotCategory
+    HotCategory,
+    CenterHeader
   },
   setup() {
     const context = getCurrentInstance().ctx
