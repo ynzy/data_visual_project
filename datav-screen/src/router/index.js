@@ -6,15 +6,17 @@ const routes = [
     path: '/',
     name: '',
     // component: demo
-    redirect: '/home'
+    redirect: '/baseScroll'
   },
   {
     path: '/home',
     name: 'Home',
-    // route level code-splitting
-    // this generates a separate chunk (Home.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "Home" */ '../views/Home.vue')
+  },
+  {
+    path: '/baseScroll',
+    name: 'BaseScroll',
+    component: () => import(/* webpackChunkName: "BaseScroll" */ '../views/BaseScroll.vue')
   }
 ]
 
