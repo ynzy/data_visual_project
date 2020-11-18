@@ -14,6 +14,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "Home" */ '../views/Home.vue')
   },
   {
+    path: '/rotatingEarthTest',
+    name: 'RotatingEarthTest',
+    component: () => import(/* webpackChunkName: "RotatingEarthTest" */ '../views/RotatingEarthTest.vue')
+  },
+  {
     path: '/baseScroll',
     name: 'BaseScroll',
     component: () => import(/* webpackChunkName: "BaseScroll" */ '../views/BaseScroll.vue')
