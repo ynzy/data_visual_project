@@ -6,7 +6,7 @@ const routes = [
     path: '/',
     name: '',
     // component: demo
-    redirect: '/baseScroll'
+    redirect: '/home'
   },
   {
     path: '/home',

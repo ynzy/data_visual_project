@@ -52,7 +52,9 @@
               <div class="right-left4">44</div>
             </div>
             <div class="right-right">
-              <div class="right-right1">1</div>
+              <div class="right-right1">
+                <SalesList :data="salesListData" />
+              </div>
               <div class="right-right2">2</div>
             </div>
           </div>
@@ -74,6 +76,7 @@ import TotalRider from '@/components/TotalRider/index.vue'
 import HotCategory from '@/components/HotCategory/index.vue'
 import CenterHeader from '@/components/CenterHeader/index.vue'
 import TransformCategory from '@/components/TransformCategory/index.vue'
+import SalesList from '@/components/SalesList/index.vue'
 export default {
   name: 'Home',
   components: {
@@ -86,7 +89,8 @@ export default {
     TotalRider,
     HotCategory,
     CenterHeader,
-    TransformCategory
+    TransformCategory,
+    SalesList
   },
   setup() {
     const context = getCurrentInstance().ctx
@@ -176,7 +180,6 @@ export default {
       height: 100%;
       max-width: 2960px;
       overflow: hidden;
-      background: rgb(60, 61, 64);
       .right-top1 {
         height: 206px;
         margin-bottom: 20px;
@@ -186,7 +189,6 @@ export default {
       .right-top2 {
         height: 48px;
         margin-bottom: 20px;
-        background: #000;
       }
 
       .right-bottom {
@@ -198,22 +200,18 @@ export default {
           width: 1917px;
           .right-left1 {
             height: 999px;
-            background: #000;
           }
           .right-left2 {
             height: 80px;
             padding-top: 20px;
-            background: #000;
           }
           .right-left3 {
             height: 350px;
             margin-top: 10px;
-            background: #000;
           }
           .right-left4 {
             height: 220px;
             margin-top: 10px;
-            background: #000;
           }
         }
         .right-right {
@@ -221,21 +219,19 @@ export default {
           display: flex;
           flex-direction: column;
           margin-left: 10px;
-          background: rgb(60, 61, 64);
 
           .right-right1 {
             width: 100%;
             height: 999px;
-            padding-right: 10px;
+            // padding-right: 10px;
+            // margin-right: 20px;
             box-sizing: border-box;
-            background: #000;
           }
 
           .right-right2 {
             width: 100%;
             height: 650px;
             margin-top: 20px;
-            background: #000;
           }
         }
       }
