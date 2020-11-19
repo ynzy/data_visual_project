@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import RotatingEarth from '@/components/RotatingEarth'
+import RotatingEarth from '@/components/Demo/RotatingEarth/index.vue'
 import { onMounted } from 'vue'
 export default {
   name: '',

@@ -27,6 +27,11 @@ const routes = [
     path: '/complexEcharts',
     name: 'ComplexEcharts',
     component: () => import(/* webpackChunkName: "ComplexEcharts" */ '../views/demo/ComplexEcharts.vue')
+  },
+  {
+    path: '/Test',
+    name: 'Test',
+    component: () => import(/* webpackChunkName: "Test" */ '../views/demo/Test.vue')
   }
 ]
 
