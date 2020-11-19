@@ -206,7 +206,7 @@ export default {
       // 测试：随机展示事件信息
       timer = setInterval(() => {
         const _options = cloneDeep(options.value)
-        console.log(_options)
+        // console.log(_options)
         // 初始化数据
         for (let i = 1; i < 3; i++) {
           _options.series[i].data = []
