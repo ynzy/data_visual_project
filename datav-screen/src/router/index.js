@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import demo from '../views/demo.vue'
+
 
 const routes = [
   {
@@ -16,12 +16,17 @@ const routes = [
   {
     path: '/rotatingEarthTest',
     name: 'RotatingEarthTest',
-    component: () => import(/* webpackChunkName: "RotatingEarthTest" */ '../views/RotatingEarthTest.vue')
+    component: () => import(/* webpackChunkName: "RotatingEarthTest" */ '../views/demo/RotatingEarthTest.vue')
   },
   {
     path: '/baseScroll',
     name: 'BaseScroll',
-    component: () => import(/* webpackChunkName: "BaseScroll" */ '../views/BaseScroll.vue')
+    component: () => import(/* webpackChunkName: "BaseScroll" */ '../views/demo/BaseScroll.vue')
+  },
+  {
+    path: '/complexEcharts',
+    name: 'ComplexEcharts',
+    component: () => import(/* webpackChunkName: "ComplexEcharts" */ '../views/demo/ComplexEcharts.vue')
   }
 ]
 
