@@ -41,7 +41,9 @@
           </div>
           <div class="right-bottom">
             <div class="right-left">
-              <div class="right-left1">11</div>
+              <div class="right-left1">
+                <OrderMap />
+              </div>
               <div class="right-left2">
                 <TransformCategory
                   :data="['订单', '销售额', '用户数', '退单量']"
@@ -64,7 +66,7 @@
   </div>
 </template>
 <script>
-import { onMounted, reactive, ref, toRefs, getCurrentInstance } from 'vue'
+import { onMounted, ref, getCurrentInstance } from 'vue'
 import useScreenData from '@/hooks/useScreenData'
 import Separator from '@/components/Separator/index.vue'
 import TopHeader from '@/components/TopHeader/index.vue'
@@ -77,6 +79,7 @@ import HotCategory from '@/components/HotCategory/index.vue'
 import CenterHeader from '@/components/CenterHeader/index.vue'
 import TransformCategory from '@/components/TransformCategory/index.vue'
 import SalesList from '@/components/SalesList/index.vue'
+import OrderMap from '@/components/OrderMap/index.vue'
 export default {
   name: 'Home',
   components: {
@@ -90,7 +93,8 @@ export default {
     HotCategory,
     CenterHeader,
     TransformCategory,
-    SalesList
+    SalesList,
+    OrderMap
   },
   setup() {
     const context = getCurrentInstance().ctx

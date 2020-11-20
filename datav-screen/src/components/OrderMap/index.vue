@@ -12,6 +12,7 @@ import echarts from 'echarts'
 import cloneDeep from 'lodash/cloneDeep'
 
 import mapJson from '@/assets/json/map.json'
+
 export default {
   name: 'OrderMap',
   components: {},
@@ -339,9 +340,44 @@ export default {
           categoryData[i].push(mapData[i][j].name)
         }
       }
-      // console.log(mapData, barData)
+      // 散点图数据转换
+      const convertData = function(data) {
+        const res = []
+        for (let i = 0; i < data.length; i++) {
+          const geoCoord = geoCoordMap[data[i].name]
+          if (geoCoord) {
+            res.push({
+              name: data[i].name,
+              value: geoCoord.concat(data[i].value)
+            })
+          }
+        }
+        return res
+      }
+      // console.log(convertData(mapData[0]))
+      // 飞线动画数据转换
+      const convertToLineData = function(data, gps) {
+        const res = []
+        for (let i = 0; i < data.length; i++) {
+          const dataItem = data[i]
+          const toCoord = geoCoordMap[dataItem.name] // 终点位置
+          const fromCoord = gps // 郑州 起始点位置
+          //  var toCoord = geoGps[Math.random()*3];
+          if (fromCoord && toCoord) {
+            res.push([{
+              coord: fromCoord,
+              value: dataItem.value
+            }, {
+              coord: toCoord
+            }])
+          }
+        }
+        return res
+      }
+      // console.log(convertToLineData(mapData[0], geoGpsMap[1]))
+
       echarts.registerMap('china', mapJson)
-      const cities = ['北京', '上海', '深圳', '广州', '杭州', '南京']
+
       const _options = {
         timeline: {
           axisType: 'category',
@@ -392,6 +428,12 @@ export default {
             top: '15%',
             bottom: '15%',
             width: '20%'
+          },
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+              type: 'shadow'
+            }
           },
           geo: {
             map: 'china',
@@ -446,17 +488,127 @@ export default {
       }
       for (let i = 0; i < year.length; i++) {
         _options.options.push({
+          title: [
+            {
+              text: '外卖销售大盘',
+              subtext: '数据由外卖大数据提供',
+              left: '2%',
+              top: '2%',
+              textStyle: {
+                color: '#fff',
+                fontsize: 35,
+                fontWeight: 700
+              }
+            },
+            {
+              id: 'statistic',
+              text: `${year[i]}销售额统计情况`,
+              left: '75%',
+              top: '8%',
+              textStyle: {
+                color: '#fff',
+                fontsize: 25
+              }
+            }
+          ],
           xAxis: {
-            type: 'value'
+            type: 'value',
+            position: 'top',
+            min: 0,
+            boundaryGap: false,
+            splitLine: {
+              show: false
+            },
+            axisLine: {
+              show: false
+            },
+            axisTick: {
+              show: false
+            },
+            axisLabel: {
+              margin: 2,
+              interval: 0,
+              textStyle: {
+                color: '#aaa'
+              }
+            }
           },
           yAxis: {
             type: 'category',
-            data: categoryData[i]
+            data: categoryData[i],
+            axisLine: {
+              lineStyle: {
+                color: '#ddd'
+              }
+            },
+            axisTick: {
+              show: false
+            },
+            axisLabel: {
+              interval: 0,
+              textStyle: {
+                color: '#ddd'
+              }
+            }
           },
           series: [
             {
+              type: 'effectScatter',
+              coordinateSystem: 'geo',
+              data: convertData(mapData[i]),
+              symbolSize: function(val) {
+                return val[2] / 10
+              },
+              rippleEffect: {
+                brushType: 'stroke'
+              },
+              hoverAnimation: true,
+              label: {
+                normal: {
+                  show: true,
+                  position: 'right',
+                  formatter: function(params) {
+                    return params.data.name
+                  }
+                }
+              },
+              itemStyle: {
+                normal:{
+                  color: colors[colorIndex][i]
+                }
+              },
+              zlevel: 1
+            },
+            {
+              type: 'lines',
+              data: convertToLineData(mapData[i], geoGpsMap[i+1]),
+              effect: {
+                show: true,
+                period: 4,
+                symbol: 'arrow',
+                symbolSize: 3,
+                trailLength: 0.02
+              },
+              lineStyle:{
+                normal:{
+                  color: colors[colorIndex][i],
+                  width: 0.1,
+                  opacity: 0.5,
+                  curveness: 0.3 //线的曲度
+                }
+              },
+              zlevel: 2
+            },
+            {
               type: 'bar',
-              data: barData[i]
+              data: barData[i],
+              itemStyle: {
+                normal: {
+                  color: colors[colorIndex][i],
+                  shadowColor: colors[colorIndex][i],
+                  shadowBlur: 0
+                }
+              }
             }
           ]
         })
