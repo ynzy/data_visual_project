@@ -63,7 +63,9 @@
               <div class="right-right1">
                 <SalesList :data="salesListData" />
               </div>
-              <div class="right-right2"></div>
+              <div class="right-right2">
+                <SalesRank :data="salesRankData" />
+              </div>
             </div>
           </div>
         </div>
@@ -88,6 +90,7 @@ import SalesList from '@/components/SalesList/index.vue'
 import OrderMap from '@/components/OrderMap/index.vue'
 import RealTimeOrder from '@/components/RealTimeOrder/index.vue'
 import ScheduleView from '@/components/ScheduleView/index.vue'
+import SalesRank from '@/components/SalesRank/index.vue'
 export default {
   name: 'Home',
   components: {
@@ -104,7 +107,8 @@ export default {
     SalesList,
     OrderMap,
     RealTimeOrder,
-    ScheduleView
+    ScheduleView,
+    SalesRank
   },
   setup() {
     const context = getCurrentInstance().ctx

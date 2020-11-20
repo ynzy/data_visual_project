@@ -29,7 +29,7 @@ export default {
       }
       // const data = getVirtualData(2020)
       const data = props.data
-      console.log(JSON.stringify(data))
+      // console.log(JSON.stringify(data))
       const option = {
         calendar: [
           {
