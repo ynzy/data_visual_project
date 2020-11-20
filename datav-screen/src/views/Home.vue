@@ -51,15 +51,19 @@
                 />
               </div>
               <div class="right-left3">
-                <FlyBox startColor="rgb(251,253,142)"> <RealTimeOrder :data="realTimeOrderData" />, </FlyBox>
+                <FlyBox startColor="rgb(251,253,142)">
+                  <RealTimeOrder :data="realTimeOrderData" />
+                </FlyBox>
               </div>
-              <div class="right-left4">44</div>
+              <div class="right-left4">
+                <ScheduleView :data="scheduleViewData" />
+              </div>
             </div>
             <div class="right-right">
               <div class="right-right1">
                 <SalesList :data="salesListData" />
               </div>
-              <div class="right-right2">2</div>
+              <div class="right-right2"></div>
             </div>
           </div>
         </div>
@@ -83,6 +87,7 @@ import TransformCategory from '@/components/TransformCategory/index.vue'
 import SalesList from '@/components/SalesList/index.vue'
 import OrderMap from '@/components/OrderMap/index.vue'
 import RealTimeOrder from '@/components/RealTimeOrder/index.vue'
+import ScheduleView from '@/components/ScheduleView/index.vue'
 export default {
   name: 'Home',
   components: {
@@ -98,7 +103,8 @@ export default {
     TransformCategory,
     SalesList,
     OrderMap,
-    RealTimeOrder
+    RealTimeOrder,
+    ScheduleView
   },
   setup() {
     const context = getCurrentInstance().ctx
