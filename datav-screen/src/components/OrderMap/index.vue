@@ -573,7 +573,7 @@ export default {
                 }
               },
               itemStyle: {
-                normal:{
+                normal: {
                   color: colors[colorIndex][i]
                 }
               },
@@ -581,7 +581,7 @@ export default {
             },
             {
               type: 'lines',
-              data: convertToLineData(mapData[i], geoGpsMap[i+1]),
+              data: convertToLineData(mapData[i], geoGpsMap[i + 1]),
               effect: {
                 show: true,
                 period: 4,
@@ -589,8 +589,8 @@ export default {
                 symbolSize: 3,
                 trailLength: 0.02
               },
-              lineStyle:{
-                normal:{
+              lineStyle: {
+                normal: {
                   color: colors[colorIndex][i],
                   width: 0.1,
                   opacity: 0.5,

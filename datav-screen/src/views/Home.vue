@@ -50,7 +50,9 @@
                   :color="['rgb(178,209,126)', 'rgb(114,166,49)']"
                 />
               </div>
-              <div class="right-left3">33</div>
+              <div class="right-left3">
+                <FlyBox startColor="rgb(251,253,142)"> <RealTimeOrder :data="realTimeOrderData" />, </FlyBox>
+              </div>
               <div class="right-left4">44</div>
             </div>
             <div class="right-right">
@@ -80,6 +82,7 @@ import CenterHeader from '@/components/CenterHeader/index.vue'
 import TransformCategory from '@/components/TransformCategory/index.vue'
 import SalesList from '@/components/SalesList/index.vue'
 import OrderMap from '@/components/OrderMap/index.vue'
+import RealTimeOrder from '@/components/RealTimeOrder/index.vue'
 export default {
   name: 'Home',
   components: {
@@ -94,7 +97,8 @@ export default {
     CenterHeader,
     TransformCategory,
     SalesList,
-    OrderMap
+    OrderMap,
+    RealTimeOrder
   },
   setup() {
     const context = getCurrentInstance().ctx
