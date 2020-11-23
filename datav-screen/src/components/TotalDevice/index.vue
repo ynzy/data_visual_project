@@ -74,7 +74,6 @@ export default {
       }
     }
     const update = newData => {
-      console.log(newData)
       if (refData.value.length > 0) {
         refData.value = newData.devices.map((item, index) => ({
           startValue: refData.value[index].value,

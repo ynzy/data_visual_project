@@ -56,7 +56,7 @@
                 </FlyBox>
               </div>
               <div class="right-left4">
-                <ScheduleView :data="scheduleViewData" />
+                <ScheduleView />
               </div>
             </div>
             <div class="right-right">
