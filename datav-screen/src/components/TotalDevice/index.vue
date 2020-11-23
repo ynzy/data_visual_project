@@ -74,6 +74,7 @@ export default {
       }
     }
     const update = newData => {
+      console.log(newData)
       if (refData.value.length > 0) {
         refData.value = newData.devices.map((item, index) => ({
           startValue: refData.value[index].value,
@@ -82,7 +83,7 @@ export default {
           color: color[index]
         }))
       } else {
-        refData.value = newData.devices.map((item, index) => ({
+        refData.value = newData?.devices?.map((item, index) => ({
           startValue: 0,
           value: item.value,
           name: item.key,
@@ -90,7 +91,7 @@ export default {
         }))
       }
       startNum.value = num.value
-      num.value = +newData.totalDevices
+      num.value = +newData?.totalDevices
       updateChart()
     }
     watch(

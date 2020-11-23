@@ -112,15 +112,15 @@ export default {
   },
   setup() {
     const context = getCurrentInstance().ctx
+    // const loading = ref(true)
     const screenData = useScreenData(context, { once: false })
-    const loading = ref(true)
-    onMounted(() => {
-      setTimeout(() => {
-        loading.value = false
-      }, 0)
-    })
+    // onMounted(() => {
+    //   setTimeout(() => {
+    //     loading.value = false
+    //   }, 0)
+    // })
     return {
-      loading,
+      // loading,
       ...screenData
     }
   }

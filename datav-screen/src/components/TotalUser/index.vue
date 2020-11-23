@@ -51,19 +51,19 @@ export default {
     watch(
       () => props.todayUser,
       (newValue, oldValue) => {
-        startVal.value = newValue
+        startVal.value = oldValue
       }
     )
     watch(
       () => props.growthLastDay,
       (newValue, oldValue) => {
-        startPercent.value = newValue
+        startPercent.value = oldValue
       }
     )
     watch(
       () => props.growthLastMonth,
       (newValue, oldValue) => {
-        startPercent2.value = newValue
+        startPercent2.value = oldValue
       }
     )
     return {
