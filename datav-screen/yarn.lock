@@ -8306,6 +8306,11 @@ uuid@^3.3.2, uuid@^3.4.0:
   resolved "https://registry.npm.taobao.org/uuid/download/uuid-3.4.0.tgz#b23e4358afa8a202fe7a100af1f5f883f02007ee"
   integrity sha1-sj5DWK+oogL+ehAK8fX4g/AgB+4=
 
+uuid@^8.3.1:
+  version "8.3.1"
+  resolved "https://registry.npm.taobao.org/uuid/download/uuid-8.3.1.tgz?cache=0&sync_timestamp=1605962420250&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fuuid%2Fdownload%2Fuuid-8.3.1.tgz#2ba2e6ca000da60fce5a196954ab241131e05a31"
+  integrity sha1-K6LmygANpg/OWhlpVKskETHgWjE=
+
 v8-compile-cache@^2.0.3:
   version "2.2.0"
   resolved "https://registry.npm.taobao.org/v8-compile-cache/download/v8-compile-cache-2.2.0.tgz?cache=0&sync_timestamp=1603909625582&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fv8-compile-cache%2Fdownload%2Fv8-compile-cache-2.2.0.tgz#9471efa3ef9128d2f7c6a7ca39c4dd6b5055b132"
@@ -8735,6 +8740,14 @@ yargs@^15.0.0:
     which-module "^2.0.0"
     y18n "^4.0.0"
     yargs-parser "^18.1.2"
+
+ynzy_datav_libs@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npm.taobao.org/ynzy_datav_libs/download/ynzy_datav_libs-1.0.0.tgz?cache=0&sync_timestamp=1606181318447&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fynzy_datav_libs%2Fdownload%2Fynzy_datav_libs-1.0.0.tgz#07084d3004211929b2575c82860796240184e6ed"
+  integrity sha1-BwhNMAQhGSmyV1yChgeWJAGE5u0=
+  dependencies:
+    lodash "^4.17.20"
+    uuid "^8.3.1"
 
 yorkie@^2.0.0:
   version "2.0.0"

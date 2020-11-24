@@ -25,11 +25,6 @@ export default function useScreenData() {
   const salesListData = ref([])
   const salesRankData = ref([])
 
-
-  let userData = reactive({
-
-  })
-
   let task = null
 
   // 获取核心指标
@@ -42,12 +37,6 @@ export default function useScreenData() {
 
   const update = () => {
     screenData().then(res => {
-      console.log(res);
-      // Object.keys(res).forEach(item => {
-      //   userData[item] = res[item]
-      // })
-      // userData = ref(res)
-      // console.log(userData);
       //! 用户总数据
       todayUser.value = res.userToday
       growthLastDay.value = +res.growthLastDay || 0
