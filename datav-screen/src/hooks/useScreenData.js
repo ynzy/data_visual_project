@@ -1,6 +1,6 @@
 import { onMounted, onUnmounted, reactive, ref, toRefs } from 'vue'
 
-import { screenData } from "@/api";
+import { screenData } from '@/api'
 
 const color = ['rgb(116,166,49)', 'rgb(190,245,99)', 'rgb(202,252,137)', 'rgb(251,253,142)']
 
@@ -60,7 +60,7 @@ export default function useScreenData() {
             color: color[index]
           })
         }
-      });
+      })
       ageData.value = _ageData
       averageage.value = +res.averageAge
       //! 登录设备数据
@@ -115,7 +115,7 @@ export default function useScreenData() {
       //! 实时订单数据
       realTimeOrderData.value = {
         date: [...realTimeOrderData.value.date, getNowTime()],
-        data: [...realTimeOrderData.value.data, res.realTimeOrder],
+        data: [...realTimeOrderData.value.data, res.realTimeOrder]
       }
       //! 销售列表数据
       salesListData.value = res.areaSales
@@ -129,14 +129,12 @@ export default function useScreenData() {
     task = setInterval(() => {
       update()
     }, 3000)
-
   })
   onUnmounted(() => {
     task && clearInterval(task)
   })
   return {
     loading,
-    userData,
     todayUser,
     growthLastDay,
     growthLastMounth,
