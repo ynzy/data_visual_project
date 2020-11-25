@@ -1,1 +1,0 @@
-var a={a:1,b:2,c:"\ud83d\ude00",d:!0,square:function(a){return a*a},random:function(a){return a&&a%1==0?Math.floor(Math.random()*a):0},cjsA:{a:Math.floor(10*Math.random()),b:Math.floor(100*Math.random()),random:function(a){return a&&a%1==0?Math.floor(Math.random()*a):0}}.a};export default a;
