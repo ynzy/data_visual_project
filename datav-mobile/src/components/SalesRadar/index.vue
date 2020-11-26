@@ -10,22 +10,14 @@
 import { onMounted, ref } from 'vue'
 export default {
   name: 'SalesRadar',
-  setup() {
+  props: {
+    data: Object
+  },
+  setup(props) {
+    console.log(props.data)
     const options = ref({})
-    const update = () => {
-      const _options = {
-        tooltip: {},
-        radar: {
-          // shape: 'circle',
-          name: {
-            textStyle: {
-              color: '#fff',
-              backgroundColor: '#999',
-              borderRadius: 3,
-              padding: [3, 5]
-            }
-          },
-          indicator: [
+    const { data, indicator } = props.data
+    /* const indicator = [
             {
               name: '订单量',
               max: 6500
@@ -50,14 +42,8 @@ export default {
               name: '热度',
               max: 25000
             }
-          ]
-        },
-        series: [
-          {
-            name: '运营指标',
-            type: 'radar',
-            // areaStyle: {normal: {}},
-            data: [
+          ] */
+    /* const data = [
               {
                 value: [4300, 10000, 28000, 35000, 50000, 19000],
                 name: '预期'
@@ -66,7 +52,28 @@ export default {
                 value: [5000, 14000, 28000, 31000, 42000, 21000],
                 name: '实际'
               }
-            ]
+            ] */
+    const update = () => {
+      const _options = {
+        tooltip: {},
+        radar: {
+          // shape: 'circle',
+          name: {
+            textStyle: {
+              color: '#fff',
+              backgroundColor: '#999',
+              borderRadius: 3,
+              padding: [3, 5]
+            }
+          },
+          indicator
+        },
+        series: [
+          {
+            name: '运营指标',
+            type: 'radar',
+            // areaStyle: {normal: {}},
+            data
           }
         ]
       }

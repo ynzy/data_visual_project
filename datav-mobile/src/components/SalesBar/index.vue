@@ -12,13 +12,16 @@ import { onMounted, ref } from 'vue'
 export default {
   name: '',
   components: {},
-  setup() {
+  props: {
+    data: Object
+  },
+  setup(props) {
     const options = ref({})
     const update = () => {
-      const axis = ['南京', '深圳', '杭州', '上海', '北京', '全国']
-      const data1 = [68203, 73489, 79034, 204970, 231744, 630230]
-      const data2 = [49325, 53438, 61000, 221594, 234141, 681807]
-
+      const { axis, data1, data2 } = props.data
+      // const axis = ['南京', '深圳', '杭州', '上海', '北京', '全国']
+      // const data1 = [68203, 73489, 79034, 204970, 231744, 630230]
+      // const data2 = [49325, 53438, 61000, 221594, 234141, 681807]
       const _options = {
         title: {
           text: '今日销售额：253,089.10元',
