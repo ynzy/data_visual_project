@@ -10,7 +10,10 @@
 import { onMounted, ref } from 'vue'
 export default {
   name: 'SalesSun',
-  setup() {
+  props: {
+    data: Object
+  },
+  setup(props) {
     const options = ref({})
     const colors = ['rgb(0,211,255)', 'rgb(0,123,255)', 'rgb(0,218,234)', 'rgb(35,69,145)', '#9A2555']
     const bgColor = '#2E2733'
@@ -28,7 +31,7 @@ export default {
         color: colors[3]
       }
     }
-    const data = [
+    /* const data = [
       {
         name: '小食',
         itemStyle: {
@@ -165,8 +168,8 @@ export default {
           }
         ]
       }
-    ]
-
+    ] */
+    const data = props.data
     const update = () => {
       for (let j = 0; j < data.length; ++j) {
         const level1 = data[j].children

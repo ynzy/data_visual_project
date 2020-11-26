@@ -12,13 +12,17 @@ import { onMounted, ref } from 'vue'
 export default {
   name: '',
   components: {},
-  setup() {
+  props: {
+    data: Object
+  },
+  setup(props) {
     const options = ref({})
     const update = () => {
-      const axis = ['00:00', '08:00', '16:00', '24:00']
-      const data1 = [151, 532, 901, 344]
-      const data2 = [320, 1732, 501, 334]
-      const data3 = [900, 900, 900, 900]
+      const { axis, data1, data2, data3 } = props.data
+      // const axis = ['00:00', '08:00', '16:00', '24:00']
+      // const data1 = [151, 532, 901, 344]
+      // const data2 = [320, 1732, 501, 334]
+      // const data3 = [900, 900, 900, 900]
 
       const _options = {
         title: {

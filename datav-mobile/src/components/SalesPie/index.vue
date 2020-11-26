@@ -24,7 +24,10 @@
 import { onMounted, reactive, toRefs } from 'vue'
 export default {
   name: 'SalesPie',
-  setup() {
+  props: {
+    data: Object
+  },
+  setup(props) {
     const state = reactive({
       options1: {},
       options2: {},
@@ -96,10 +99,16 @@ export default {
         ]
       }
     }
+    // const { axis, data1, data2 } = props.data
     const update = () => {
-      state.options1 = createOptions('转化率', '13%', [1000, 130])
-      state.options2 = createOptions('退单率', '5%', [1000, 50])
-      state.options3 = createOptions('跳失率', '43%', [1000, 430])
+      let data = props.data
+      for (let i = 0; i < data.length; i++) {
+        const item = data[i]
+        state[`options${i + 1}`] = createOptions(item.name, item.total, item.data)
+      }
+      // state.options= createOptions('转化率', '13%', [1000, 130])
+      // state.options2 = createOptions('退单率', '5%', [1000, 50])
+      // state.options3 = createOptions('跳失率', '43%', [1000, 430])
     }
     onMounted(update)
     return {

@@ -1,13 +1,16 @@
 <template>
-  <div class="home">
+  <div class="home" v-if="!loading">
     <div class="datav-wrapper" />
     <TopHeader />
-    <SalesBar />
-    <SalesLine />
-    <SalesPie />
+    <SalesBar :data="salesBar" />
+    <SalesLine :data="saleLine" />
+    <SalesPie :data="salePie" />
     <SalesMap />
-    <SaleSun />
-    <SalesRadar />
+    <SaleSun :data="salesSun" />
+    <SalesRadar :data="salesRadar" />
+  </div>
+  <div class="home" v-else>
+    <div class="loading-wrapper">{{ loadingText }}</div>
   </div>
 </template>
 
@@ -20,7 +23,7 @@ import SalesPie from '@/components/SalesPie/index.vue'
 import SalesMap from '@/components/SalesMap/index.vue'
 import SaleSun from '@/components/SaleSun/index.vue'
 import SalesRadar from '@/components/SalesRadar/index.vue'
-
+import { mobileScreenData } from '@/hooks/mobileScreenData'
 export default {
   name: 'Home',
   components: {
@@ -33,8 +36,10 @@ export default {
     SalesRadar
   },
   setup() {
+    // const { saleLine, salePie, salesBar, salesRadar, salesSun, loading, loadingText } = mobileScreenData()
+    const screenData = mobileScreenData()
     return {
-      options: {}
+      ...screenData
     }
   }
 }
@@ -55,6 +60,15 @@ export default {
     background-image: url('../assets/images/datav_bg.jpg');
     background-size: 100% 100%;
     background-repeat: no-repeat;
+  }
+  .loading-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    color: #fff;
   }
 }
 </style>
