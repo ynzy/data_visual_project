@@ -6,6 +6,8 @@
     <SalesLine />
     <SalesPie />
     <SalesMap />
+    <SaleSun />
+    <SalesRadar />
   </div>
 </template>
 
@@ -16,6 +18,8 @@ import SalesBar from '@/components/SalesBar/index.vue'
 import SalesLine from '@/components/SalesLine/index.vue'
 import SalesPie from '@/components/SalesPie/index.vue'
 import SalesMap from '@/components/SalesMap/index.vue'
+import SaleSun from '@/components/SaleSun/index.vue'
+import SalesRadar from '@/components/SalesRadar/index.vue'
 
 export default {
   name: 'Home',
@@ -24,7 +28,9 @@ export default {
     SalesBar,
     SalesLine,
     SalesPie,
-    SalesMap
+    SalesMap,
+    SaleSun,
+    SalesRadar
   },
   setup() {
     return {
