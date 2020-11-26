@@ -1,3 +1,4 @@
+<!-- 旭日图 -->
 <template>
   <div class="sales-sun">
     <div class="sales-sun-inner">

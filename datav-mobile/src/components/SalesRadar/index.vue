@@ -1,3 +1,4 @@
+<!-- 雷达图 -->
 <template>
   <div class="sales-radar">
     <div class="sales-radar-inner">
