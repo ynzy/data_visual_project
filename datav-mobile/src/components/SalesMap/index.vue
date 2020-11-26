@@ -2,88 +2,140 @@
 <template>
   <div class="sales-map">
     <div class="sales-map-inner">
-      <vue-echarts :options="options"></vue-echarts>
+      <div id="map_container" />
     </div>
   </div>
 </template>
 
 <script>
 import { onMounted, ref } from 'vue'
+const $bmap = window.BMapGL
+const $initMap = window.initMap
+const $mapvgl = window.mapvgl
+const $mapv = window.mapv
+const $purpleStyle = window.purpleStyle
+const $darkStyle = window.darkStyle
 export default {
   name: 'SalesMap',
   setup() {
-    const options = ref({})
-    const update = () => {
-      const axis = ['南京', '深圳', '杭州', '上海', '北京', '全国']
-      const data1 = [68203, 73489, 79034, 204970, 231744, 630230]
-      const data2 = [49325, 53438, 61000, 221594, 234141, 681807]
-
-      const _options = {
-        title: {
-          text: '今日销售额：253,089.10元',
-          textStyle: {
-            color: '#fff'
-          },
-          top: 10
-        },
-        tooltip: {
-          trigger: 'axis',
-          axisPointer: {
-            type: 'shadow'
-          }
-        },
-        grid: {
-          left: '3%',
-          right: '4%',
-          bottom: '3%',
-          containLabel: true
-        },
-        xAxis: {
-          type: 'value',
-          axisLabel: {
-            show: false
-          },
-          axisTick: {
-            show: false
-          },
-          axisLine: {
-            show: false
-          },
-          splitLine: {
-            lineStyle: {
-              color: 'rgba(255, 255, 255, 0.1)'
-            }
-          }
-        },
-        yAxis: {
-          type: 'category',
-          axisLabel: {
-            color: '#fff'
-          },
-          data: axis
-        },
-        series: [
-          {
-            name: '平台流量',
-            type: 'bar',
-            data: data1
-          },
-          {
-            name: '外部流量',
-            type: 'bar',
-            data: data2,
-            itemStyle: {
-              color: 'rgb(0, 140, 217)'
-            }
-          }
-        ]
+    let map = null
+    // 初始化百度地图
+    const initBMap = () => {
+      map = $initMap({
+        tilt: 0,
+        center: [108.154518, 36.643346],
+        zoom: 4,
+        style: $darkStyle
+      })
+    }
+    const initData = () => {
+      const randomCount = 500
+      const nodeData = [
+        {
+          x: 108.154518,
+          y: 36.643346
+        }
+      ]
+      const edgeData = [
+        {
+          source: 1,
+          target: 0
+        }
+      ]
+      const cities = [
+        '北京',
+        '天津',
+        '上海',
+        '重庆',
+        '石家庄',
+        '太原',
+        '呼和浩特',
+        '哈尔滨',
+        '长春',
+        '沈阳',
+        '济南',
+        '南京',
+        '合肥',
+        '杭州',
+        '南昌',
+        '福州',
+        '郑州',
+        '武汉',
+        '长沙',
+        '广州',
+        '南宁',
+        '西安',
+        '银川',
+        '兰州',
+        '西宁',
+        '乌鲁木齐',
+        '成都',
+        '贵阳',
+        '昆明',
+        '拉萨',
+        '海口'
+      ]
+      // 构造数据
+      for (let i = 1; i < randomCount; i++) {
+        const cityCenter = $mapv.utilCityCenter.getCenterByCityName(cities[parseInt(Math.random() * cities.length)])
+        nodeData.push({
+          x: cityCenter.lng - 5 + Math.random() * 10,
+          y: cityCenter.lat - 5 + Math.random() * 10
+        })
+        edgeData.push({
+          source: parseInt(i * Math.random()),
+          target: 0
+        })
       }
-      options.value = _options
+      const fbundling = $mapv
+        .utilForceEdgeBundling()
+        .nodes(nodeData)
+        .edges(edgeData)
+      const results = fbundling()
+      const data = []
+      for (let i = 0; i < results.length; i++) {
+        const line = results[i]
+        const coordinates = []
+        for (let j = 0; j < line.length; j++) {
+          coordinates.push([line[j].x, line[j].y])
+        }
+        data.push({
+          geometry: {
+            type: 'LineString',
+            coordinates: coordinates
+          }
+        })
+      }
+      return {
+        lineData: data
+      }
     }
-    onMounted(update)
-    return {
-      options
+    const setData = ({ lineData }) => {
+      const view = new $mapvgl.View({ map })
+      const lineLayer = new $mapvgl.LineLayer({
+        color: 'rgba(55, 50, 250, 0.3)',
+        blend: 'lighter'
+      })
+      view.addLayer(lineLayer)
+      lineLayer.setData(lineData)
+      const linePointLayer = new $mapvgl.LinePointLayer({
+        size: 8,
+        speed: 10,
+        color: 'rgba(255, 255, 0, 0.6)',
+        animationType: $mapvgl.LinePointLayer.ANIMATION_TYPE_SMOOTH,
+        shapeType: $mapvgl.LinePointLayer.SHAPE_TYPE_CIRCLE,
+        blend: 'lighter'
+      })
+      view.addLayer(linePointLayer)
+      linePointLayer.setData(lineData)
     }
+
+    onMounted(() => {
+      initBMap()
+      const data = initData()
+      setData(data)
+    })
+    return {}
   }
 }
 </script>
@@ -102,6 +154,10 @@ export default {
     width: 100%;
     height: 100%;
     background: rgba(255, 255, 255, 0.05);
+    #map_container {
+      width: 100%;
+      height: 100%;
+    }
   }
 }
 </style>
