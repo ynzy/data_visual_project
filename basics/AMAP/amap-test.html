@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.15&key=6a5f60102d42030f124901a0d4049772"></script> 
+<style>
+  html,body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  #container { width:100%; height: 100%; }  
+  .layer-btn {
+    position: absolute;
+    right: 30px;
+    bottom: 20px
+  }
+</style>
+<body>
+  <div class="wrapper">
+    <div id="container"></div> 
+    <div class="layer-btn">
+      <button onclick="handleHide()">显示/隐藏图层</button>
+    </div>
+  </div>
+  <script>
+  var map = new AMap.Map('container');
+    var map = new AMap.Map('container', {
+        zoom:11,//级别
+        center: [116.397428, 39.90923],//中心点坐标
+        // viewMode:'3D',//使用3D视图
+        // pitch:83, // 地图俯仰角度，有效范围 0 度- 83 度
+        // rotation: 10,
+         layers: [//使用多个图层
+            new AMap.TileLayer.Satellite(),
+            new AMap.TileLayer.RoadNet(),
+            
+        ],  
+    });
+    //实时路况图层
+    var trafficLayer = new AMap.TileLayer.Traffic({
+        zIndex: 10
+    });
+    map.add(trafficLayer);//添加图层到地图
+    let show = false
+    function handleHide(){
+      show = !show
+      if(!show) {
+        trafficLayer.hide()
+        return 
+      }
+      trafficLayer.show()
+    }
+  </script>
+</body>
+</html>
