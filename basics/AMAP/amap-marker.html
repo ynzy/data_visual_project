@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width" />
+		<style>
+			html,
+			body,
+			#container {
+				width: 100%;
+				height: 100%;
+			}
+		</style>
+		<title>折线的绘制和编辑</title>
+		<link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" />
+		<script src="https://webapi.amap.com/maps?v=1.4.15&key=6a5f60102d42030f124901a0d4049772&plugin=AMap.PolyEditor"></script>
+		<script src="https://a.amap.com/jsapi_demos/static/demo-center/js/demoutils.js"></script>
+	</head>
+	<body>
+		<div id="container"></div>
+		<div class="input-card" style="width: 120px">
+			<button class="btn" onclick="polyEditor.open()" style="margin-bottom: 5px">开始编辑</button>
+			<button class="btn" onclick="polyEditor.close()">结束编辑</button>
+		</div>
+		<script type="text/javascript">
+			var map = new AMap.Map('container', {
+				center: [116.395577, 39.892257],
+				zoom: 14
+			})
+
+			var path = [
+				[116.362209, 39.887487],
+				[116.422897, 39.878002],
+				[116.372105, 39.90651],
+				[116.428945, 39.89663]
+			]
+
+			var polyline = new AMap.Polyline({
+				path: path,
+				isOutline: true,
+				outlineColor: '#ffeeff',
+				borderWeight: 3,
+				strokeColor: '#3366FF',
+				strokeOpacity: 1,
+				strokeWeight: 6,
+				// 折线样式还支持 'dashed'
+				strokeStyle: 'solid',
+				// strokeStyle是dashed时有效
+				strokeDasharray: [10, 5],
+				lineJoin: 'round',
+				lineCap: 'round',
+				zIndex: 50
+			})
+
+			polyline.setMap(map)
+			// 缩放地图到合适的视野级别
+			map.setFitView([polyline])
+
+			var polyEditor = new AMap.PolyEditor(map, polyline)
+
+			polyEditor.on('addnode', function (event) {
+				log.info('触发事件：addnode')
+			})
+
+			polyEditor.on('adjust', function (event) {
+				log.info('触发事件：adjust')
+			})
+
+			polyEditor.on('removenode', function (event) {
+				log.info('触发事件：removenode')
+			})
+
+			polyEditor.on('end', function (event) {
+				log.info('触发事件： end')
+				// event.target 即为编辑后的折线对象
+			})
+		</script>
+	</body>
+</html>
