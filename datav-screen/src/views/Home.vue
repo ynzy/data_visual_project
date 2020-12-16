@@ -134,7 +134,7 @@ export default {
   background: #1d1d1d;
   color: #fff;
   font-size: 48px;
-  #screen-container {
+  #datav-container {
     display: flex;
     flex-direction: column;
     .header {
